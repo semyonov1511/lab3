@@ -4,11 +4,11 @@ public class Reactor {
 
     private String filetype;
     private String Class;
-    private int burnup;
+    private double burnup;
     private double kpd;
     private double enrichment;
     private int TCapacity;
-    private int ECapacity;
+    private Double ECapacity;
     private int lifetime;
     private double firstload;
 
@@ -29,10 +29,10 @@ public class Reactor {
         return this.Class;
     }
     
-    public void setBurnup(int burnup){
+    public void setBurnup(double burnup){
         this.burnup = burnup;
     }
-    public int getBurnup(){
+    public double getBurnup(){
         return this.burnup;
     }
     
@@ -57,10 +57,10 @@ public class Reactor {
         return this.TCapacity;
     }
     
-    public void setECapacity(int ECapacity){
+    public void setECapacity(Double ECapacity){
         this.ECapacity = ECapacity;
     }
-    public int getECapacity(){
+    public Double getECapacity(){
         return this.ECapacity;
     }
     

@@ -22,32 +22,47 @@ public class FileReader {
                 XMLEvent xmlEvent = reader.nextEvent();
                 if (xmlEvent.isStartElement()) {
                     StartElement startElement = xmlEvent.asStartElement();
-                    if (startElement.getName().getLocalPart().equals("MKER")) {
+                    if (startElement.getName().getLocalPart().equals("Reactor")) {
+                        //System.out.println("Название реактора - " + startElement.getAttributeByName(new QName("name")).getValue());
                         reactor = new Reactor();
-                        System.out.println("бебебе");
                         // Получаем атрибут id для каждого элемента Student
-                        //Attribute idAttr = startElement.getAttributeByName(new QName("id"));
-                        //if (idAttr != null) {
-                        //}
-                        //reactor.setId(Integer.parseInt(idAttr.getValue()));
+                        /* Attribute idAttr = startElement.getAttributeByName(new QName("id"));
+                        if (idAttr != null) {
+                        }
+                        reactor.setId(Integer.parseInt(idAttr.getValue()));
+                        */
                     } else if (startElement.getName().getLocalPart().equals("class")) {
                         xmlEvent = reader.nextEvent();
-                        System.out.println("гыгы " + xmlEvent.asCharacters().getData());
                         reactor.setClass(xmlEvent.asCharacters().getData());
-                    } else if (startElement.getName().getLocalPart().equals("name")) {
+                    } else if (startElement.getName().getLocalPart().equals("burnup")) {
                         xmlEvent = reader.nextEvent();
-                        //reactor.setName(xmlEvent.asCharacters().getData());
-                    } else if (startElement.getName().getLocalPart().equals("language")) {
+                        reactor.setBurnup(Double.parseDouble(xmlEvent.asCharacters().getData()));
+                    } else if (startElement.getName().getLocalPart().equals("kpd")) {
                         xmlEvent = reader.nextEvent();
-                        //reactor.setLanguage(xmlEvent.asCharacters().getData());
-                    }
+                        reactor.setKPD(Double.parseDouble(xmlEvent.asCharacters().getData()));
+                    }else if (startElement.getName().getLocalPart().equals("enrichment")) {
+                        xmlEvent = reader.nextEvent();
+                        reactor.setEnrichment(Double.parseDouble(xmlEvent.asCharacters().getData()));
+                    } else if (startElement.getName().getLocalPart().equals("termal_capacity")) {
+                        xmlEvent = reader.nextEvent();
+                        reactor.setTCapacity(Integer.parseInt(xmlEvent.asCharacters().getData()));
+                    } else if (startElement.getName().getLocalPart().equals("electrical_capacity")) {
+                        xmlEvent = reader.nextEvent();
+                        reactor.setECapacity(Double.parseDouble(xmlEvent.asCharacters().getData()));
+                    }else if (startElement.getName().getLocalPart().equals("life_time")) {
+                        xmlEvent = reader.nextEvent();
+                        reactor.setLifetime(Integer.parseInt(xmlEvent.asCharacters().getData()));
+                    } else if (startElement.getName().getLocalPart().equals("first_load")) {
+                        xmlEvent = reader.nextEvent();
+                        reactor.setFirstload(Double.parseDouble(xmlEvent.asCharacters().getData()));
+                    } 
                 }
                 // если цикл дошел до закрывающего элемента Student,
                 // то добавляем считанного из файла студента в список
                 if (xmlEvent.isEndElement()) {
                     EndElement endElement = xmlEvent.asEndElement();
                     if (endElement.getName().getLocalPart().equals("Reactor")) {
-                        System.out.println("бебебе");
+                        reactor.setFiletype("XML");
                         reactorList.add(reactor);
                     }
                 }
