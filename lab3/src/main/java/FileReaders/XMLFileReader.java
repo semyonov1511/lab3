@@ -34,41 +34,52 @@ public class XMLFileReader extends FileReader{
                 XMLEvent xmlEvent = reader.nextEvent();
                 if (xmlEvent.isStartElement()) {
                     StartElement startElement = xmlEvent.asStartElement();
-                    if (startElement.getName().getLocalPart().equals("Reactor")) {
-                        //System.out.println("Название реактора - " + startElement.getAttributeByName(new QName("name")).getValue());
-                        reactor = new Reactor();
-                        // Получаем атрибут id для каждого элемента Student
-                        /* Attribute idAttr = startElement.getAttributeByName(new QName("id"));
-                        if (idAttr != null) {
-                        }
-                        reactor.setId(Integer.parseInt(idAttr.getValue()));
-                        */
-                    } else if (startElement.getName().getLocalPart().equals("class")) {
-                        xmlEvent = reader.nextEvent();
-                        reactor.setClass(xmlEvent.asCharacters().getData());
-                    } else if (startElement.getName().getLocalPart().equals("burnup")) {
-                        xmlEvent = reader.nextEvent();
-                        reactor.setBurnup(Double.parseDouble(xmlEvent.asCharacters().getData()));
-                    } else if (startElement.getName().getLocalPart().equals("kpd")) {
-                        xmlEvent = reader.nextEvent();
-                        reactor.setKPD(Double.parseDouble(xmlEvent.asCharacters().getData()));
-                    }else if (startElement.getName().getLocalPart().equals("enrichment")) {
-                        xmlEvent = reader.nextEvent();
-                        reactor.setEnrichment(Double.parseDouble(xmlEvent.asCharacters().getData()));
-                    } else if (startElement.getName().getLocalPart().equals("termal_capacity")) {
-                        xmlEvent = reader.nextEvent();
-                        reactor.setTCapacity(Integer.parseInt(xmlEvent.asCharacters().getData()));
-                    } else if (startElement.getName().getLocalPart().equals("electrical_capacity")) {
-                        xmlEvent = reader.nextEvent();
-                        reactor.setECapacity(Double.parseDouble(xmlEvent.asCharacters().getData()));
-                    }else if (startElement.getName().getLocalPart().equals("life_time")) {
-                        xmlEvent = reader.nextEvent();
-                        reactor.setLifetime(Integer.parseInt(xmlEvent.asCharacters().getData()));
-                    } else if (startElement.getName().getLocalPart().equals("first_load")) {
-                        xmlEvent = reader.nextEvent();
-                        System.out.println(Double.parseDouble(xmlEvent.asCharacters().getData()));
-                        reactor.setFirstload(Double.parseDouble(xmlEvent.asCharacters().getData()));
-                    } 
+                    switch (startElement.getName().getLocalPart()) {
+                        case "Reactor":
+                            //System.out.println("Название реактора - " + startElement.getAttributeByName(new QName("name")).getValue());
+                            reactor = new Reactor();
+                            // Получаем атрибут id для каждого элемента Student
+                            /* Attribute idAttr = startElement.getAttributeByName(new QName("id"));
+                            if (idAttr != null) {
+                            }
+                            reactor.setId(Integer.parseInt(idAttr.getValue()));
+                            */  break;
+                        case "class":
+                            xmlEvent = reader.nextEvent();
+                            reactor.setClass(xmlEvent.asCharacters().getData());
+                            break;
+                        case "burnup":
+                            xmlEvent = reader.nextEvent();
+                            reactor.setBurnup(Double.parseDouble(xmlEvent.asCharacters().getData()));
+                            break;
+                        case "kpd":
+                            xmlEvent = reader.nextEvent();
+                            reactor.setKPD(Double.parseDouble(xmlEvent.asCharacters().getData()));
+                            break;
+                        case "enrichment":
+                            xmlEvent = reader.nextEvent();
+                            reactor.setEnrichment(Double.parseDouble(xmlEvent.asCharacters().getData()));
+                            break;
+                        case "termal_capacity":
+                            xmlEvent = reader.nextEvent();
+                            reactor.setTCapacity(Integer.parseInt(xmlEvent.asCharacters().getData()));
+                            break;
+                        case "electrical_capacity":
+                            xmlEvent = reader.nextEvent();
+                            reactor.setECapacity(Double.parseDouble(xmlEvent.asCharacters().getData()));
+                            break;
+                        case "life_time": 
+                            xmlEvent = reader.nextEvent();
+                            reactor.setLifetime(Integer.parseInt(xmlEvent.asCharacters().getData()));
+                            break;
+                        case "first_load":
+                            xmlEvent = reader.nextEvent();
+                            System.out.println(Double.parseDouble(xmlEvent.asCharacters().getData()));
+                            reactor.setFirstload(Double.parseDouble(xmlEvent.asCharacters().getData()));
+                            break;
+                        default:
+                            break;
+                    }
                 }
                 // если цикл дошел до закрывающего элемента Student,
                 // то добавляем считанного из файла студента в список
