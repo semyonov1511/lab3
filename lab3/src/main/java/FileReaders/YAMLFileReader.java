@@ -2,17 +2,32 @@ package FileReaders;
 
 import Interface.Reactor;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.io.FilenameUtils;
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.events.Event;
+import org.yaml.snakeyaml.events.MappingStartEvent;
+import org.yaml.snakeyaml.events.ScalarEvent;
 
 public class YAMLFileReader extends FileReader {
 
     @Override
     public ArrayList<Reactor> read(File file) {
-        if ("xml".equals(FilenameUtils.getExtension(file.getAbsolutePath()))) {
-            return readXML(file);
+        if ("yaml".equals(FilenameUtils.getExtension(file.getAbsolutePath()))) {
+            try {
+                loadFile(file.getAbsolutePath());
+                return getReadedList();
+            } catch (Exception e) {
+                System.out.println("чичигага");
+                e.printStackTrace();
+            }
         } else if (nextFileReader != null) {
             nextFileReader.read(file);
         }
@@ -82,15 +97,14 @@ public class YAMLFileReader extends FileReader {
             keyCounter++;
         } else {
             String value = event.getValue();
-            currentReaded.addCharacteristic(key, value, collectionTag);
+            currentReaded.addCharacteristic(key, value);
             keyCounter = 0;
         }
         
     }
-    
 
     private void createCurrent() {
-        this.currentReaded = KindredCreator.create();
+        this.currentReaded = new Reactor();
     }
 
     private void addCurrentToList() {

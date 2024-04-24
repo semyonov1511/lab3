@@ -1,10 +1,14 @@
 package Interface;
 
+import FileReaders.*;
 import java.io.File;
 import org.apache.commons.io.FilenameUtils;
 import javax.swing.JFileChooser;
 
 public class GUI extends javax.swing.JFrame {
+
+    FileReader XMLfilereader = new XMLFileReader();
+    FileReader YAMLfilereader = new YAMLFileReader();
 
     public GUI() {
         initComponents();
@@ -53,7 +57,8 @@ public class GUI extends javax.swing.JFrame {
             System.out.println("Choose a file!");
         } else {
             File file = new File(chooser.getSelectedFile().getAbsolutePath());
-            System.out.println(FilenameUtils.getExtension(file.getAbsolutePath()));
+            XMLfilereader.setNextFileReader(YAMLfilereader);
+            XMLfilereader.read(file);
         }
     }//GEN-LAST:event_openFileActionPerformed
 

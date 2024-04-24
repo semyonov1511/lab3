@@ -66,6 +66,7 @@ public class XMLFileReader extends FileReader{
                         reactor.setLifetime(Integer.parseInt(xmlEvent.asCharacters().getData()));
                     } else if (startElement.getName().getLocalPart().equals("first_load")) {
                         xmlEvent = reader.nextEvent();
+                        System.out.println(Double.parseDouble(xmlEvent.asCharacters().getData()));
                         reactor.setFirstload(Double.parseDouble(xmlEvent.asCharacters().getData()));
                     } 
                 }

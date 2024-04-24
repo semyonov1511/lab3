@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public abstract class FileReader {
     
-    protected FileReader nextFileReader;
+    public FileReader nextFileReader;
     
     public void setNextFileReader(FileReader nextFileReader){
         this.nextFileReader = nextFileReader;
