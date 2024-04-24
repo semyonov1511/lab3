@@ -2,22 +2,33 @@ package FileReaders;
 
 import Interface.Reactor;
 import java.awt.List;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import javax.xml.namespace.QName;
 import javax.xml.stream.*;
 import javax.xml.stream.events.*;
+import org.apache.commons.io.FilenameUtils;
 
-public class XMLFileReader {
-
-    public static ArrayList<Reactor> read(String fileName) {
+public class XMLFileReader extends FileReader{
+    @Override
+    public ArrayList<Reactor> read(File file) {
+        if ("xml".equals(FilenameUtils.getExtension(file.getAbsolutePath()))) {
+            return readXML(file);
+        } else if (nextFileReader != null) {
+            nextFileReader.read(file);
+        }
+        return null;
+    }
+    
+    public ArrayList<Reactor> readXML(File file) {
         ArrayList<Reactor> reactorList = new ArrayList<>();
         Reactor reactor = null;
         XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
         try {
             // инициализируем reader и скармливаем ему xml файл
-            XMLEventReader reader = xmlInputFactory.createXMLEventReader(new FileInputStream(fileName)); // проходим по всем элементам xml файла
+            XMLEventReader reader = xmlInputFactory.createXMLEventReader(new FileInputStream(file.getAbsolutePath())); // проходим по всем элементам xml файла
             while (reader.hasNext()) {
                 // получаем событие (элемент) и разбираем его по атрибутам XMLEvent xmlEvent reader.nextEvent();
                 XMLEvent xmlEvent = reader.nextEvent();
