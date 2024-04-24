@@ -1,5 +1,6 @@
-package Interface;
+package FileReaders;
 
+import Interface.Reactor;
 import java.awt.List;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,9 +9,9 @@ import javax.xml.namespace.QName;
 import javax.xml.stream.*;
 import javax.xml.stream.events.*;
 
-public class FileReader {
+public class XMLFileReader {
 
-    public static ArrayList<Reactor> parseXMLfile(String fileName) {
+    public static ArrayList<Reactor> read(String fileName) {
         ArrayList<Reactor> reactorList = new ArrayList<>();
         Reactor reactor = null;
         XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
