@@ -4,12 +4,13 @@ import FileReaders.*;
 import java.io.File;
 import org.apache.commons.io.FilenameUtils;
 import javax.swing.JFileChooser;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 public class GUI extends javax.swing.JFrame {
 
     FileReader XMLfilereader = new XMLFileReader();
     FileReader YAMLfilereader = new YAMLFileReader();
-
+    Repository repository = new Repository();
     public GUI() {
         initComponents();
     }
@@ -34,6 +35,7 @@ public class GUI extends javax.swing.JFrame {
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
         ReactorsTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane1.setViewportView(ReactorsTree);
+        ReactorsTree.getAccessibleContext().setAccessibleParent(ReactorsTree);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,7 +72,10 @@ public class GUI extends javax.swing.JFrame {
         } else {
             File file = new File(chooser.getSelectedFile().getAbsolutePath());
             XMLfilereader.setNextFileReader(YAMLfilereader);
-            XMLfilereader.read(file);
+            repository.setList(XMLfilereader.read(file));
+            for (int i=0; i<repository.getList().size();i++){
+                DefaultMutableTreeNode concreteReactor = new DefaultMutableTreeNode(repository.getList().get(i).getClass());
+            }
         }
     }//GEN-LAST:event_openFileActionPerformed
 
