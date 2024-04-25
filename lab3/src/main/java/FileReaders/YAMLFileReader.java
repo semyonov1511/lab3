@@ -1,6 +1,7 @@
 package FileReaders;
 
 import Interface.Reactor;
+import Interface.Repository;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,11 +20,12 @@ import org.yaml.snakeyaml.events.ScalarEvent;
 public class YAMLFileReader extends FileReader {
 
     @Override
-    public ArrayList<Reactor> read(File file) {
+    public void read(File file) {
         if ("yaml".equals(FilenameUtils.getExtension(file.getAbsolutePath()))) {
             try {
                 loadFile(file.getAbsolutePath());
-                return getReadedList();
+                System.out.println(getReadedList().get(0).getClass());
+                Repository.getInstance().setList(getReadedList());
             } catch (Exception e) {
                 System.out.println("чичигага");
                 e.printStackTrace();
@@ -31,7 +33,6 @@ public class YAMLFileReader extends FileReader {
         } else if (nextFileReader != null) {
             nextFileReader.read(file);
         }
-        return null;
     }
 
     private Reactor currentReaded;
@@ -76,12 +77,12 @@ public class YAMLFileReader extends FileReader {
                 createCurrent();
                 break;
             case DocumentEnd:
-                addCurrentToList();
                 break;
             case MappingStart:
                 parseMapping((MappingStartEvent) event);
                 break;
             case MappingEnd:
+                addCurrentToList();
                 collectionTag = "none";
                 mappingLevel--;
                 break;
@@ -102,14 +103,22 @@ public class YAMLFileReader extends FileReader {
             String value = event.getValue();
             currentReaded.setFiletype("YAML");
             switch (key) {
-                case "class" -> currentReaded.setClass(value);
-                case "burnup" -> currentReaded.setBurnup(Double.parseDouble(value));
-                case "kpd" -> currentReaded.setKPD(Double.parseDouble(value));
-                case "enrichment" -> currentReaded.setEnrichment(Double.parseDouble(value));
-                case "termal_capacity" -> currentReaded.setTCapacity(Integer.parseInt(value));
-                case "electrical_capacity" -> currentReaded.setECapacity(Double.parseDouble(value));
-                case "life_time" -> currentReaded.setLifetime(Integer.parseInt(value));
-                case "first_load" -> currentReaded.setFirstload(Double.parseDouble(value));
+                case "class" ->
+                    currentReaded.setClass(value);
+                case "burnup" ->
+                    currentReaded.setBurnup(Double.parseDouble(value));
+                case "kpd" ->
+                    currentReaded.setKPD(Double.parseDouble(value));
+                case "enrichment" ->
+                    currentReaded.setEnrichment(Double.parseDouble(value));
+                case "termal_capacity" ->
+                    currentReaded.setTCapacity(Integer.parseInt(value));
+                case "electrical_capacity" ->
+                    currentReaded.setECapacity(Double.parseDouble(value));
+                case "life_time" ->
+                    currentReaded.setLifetime(Integer.parseInt(value));
+                case "first_load" ->
+                    currentReaded.setFirstload(Double.parseDouble(value));
                 default -> {
                 }
             }

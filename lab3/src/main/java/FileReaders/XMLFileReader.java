@@ -1,6 +1,7 @@
 package FileReaders;
 
 import Interface.Reactor;
+import Interface.Repository;
 import java.awt.List;
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,13 +14,12 @@ import org.apache.commons.io.FilenameUtils;
 
 public class XMLFileReader extends FileReader{
     @Override
-    public ArrayList<Reactor> read(File file) {
+    public void read(File file) {
         if ("xml".equals(FilenameUtils.getExtension(file.getAbsolutePath()))) {
-            return readXML(file);
+            Repository.getInstance().setList(readXML(file));
         } else if (nextFileReader != null) {
             nextFileReader.read(file);
         }
-        return null;
     }
     
     public ArrayList<Reactor> readXML(File file) {
@@ -75,7 +75,6 @@ public class XMLFileReader extends FileReader{
                             break;
                         case "first_load":
                             xmlEvent = reader.nextEvent();
-                            System.out.println(Double.parseDouble(xmlEvent.asCharacters().getData()));
                             reactor.setFirstload(Double.parseDouble(xmlEvent.asCharacters().getData()));
                             break;
                         default:

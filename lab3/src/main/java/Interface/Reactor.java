@@ -3,7 +3,7 @@ package Interface;
 public class Reactor {
 
     private String filetype;
-    private String Class;
+    private String clas;
     private double burnup;
     private double kpd;
     private double enrichment;
@@ -11,9 +11,6 @@ public class Reactor {
     private double ECapacity;
     private int lifetime;
     private double firstload;
-
-    public Reactor() {
-    }
 
     public void setFiletype(String filetype) {
         this.filetype = filetype;
@@ -23,12 +20,12 @@ public class Reactor {
         return this.filetype;
     }
 
-    public void setClass(String Class) {
-        this.Class = Class;
+    public void setClass(String x) {
+        this.clas = x;
     }
 
     public String getsetClass() {
-        return this.Class;
+        return this.clas;
     }
 
     public void setBurnup(double burnup) {

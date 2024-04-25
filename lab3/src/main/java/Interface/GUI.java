@@ -11,7 +11,6 @@ public class GUI extends javax.swing.JFrame {
 
     FileReader XMLfilereader = new XMLFileReader();
     FileReader YAMLfilereader = new YAMLFileReader();
-    Repository repository = new Repository();
     DefaultTreeModel model;
 
     public GUI() {
@@ -76,9 +75,10 @@ public class GUI extends javax.swing.JFrame {
         } else {
             File file = new File(chooser.getSelectedFile().getAbsolutePath());
             XMLfilereader.setNextFileReader(YAMLfilereader);
-            repository.setList(XMLfilereader.read(file));
-            for (int i = 0; i < repository.getList().size(); i++) {
-                DefaultMutableTreeNode concreteReactor = new DefaultMutableTreeNode(repository.getList().get(i).getClass());
+            XMLfilereader.read(file);
+            System.out.println(Repository.getInstance().getList().size());
+            for (int i = 0; i < Repository.getInstance().getList().size(); i++) {
+                DefaultMutableTreeNode concreteReactor = new DefaultMutableTreeNode(Repository.getInstance().getList().get(i).getsetClass());
                 reactors.add(concreteReactor);
                 model = (DefaultTreeModel) ReactorsTree.getModel();
                 model.setRoot(reactors);

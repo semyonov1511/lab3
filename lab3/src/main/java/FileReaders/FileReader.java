@@ -13,6 +13,6 @@ public abstract class FileReader {
         this.nextFileReader = nextFileReader;
     }
     
-    public abstract ArrayList<Reactor> read(File file);
+    public abstract void read(File file);
     
 }
