@@ -79,6 +79,9 @@ public class GUI extends javax.swing.JFrame {
             System.out.println(Repository.getInstance().getList().size());
             for (int i = 0; i < Repository.getInstance().getList().size(); i++) {
                 DefaultMutableTreeNode concreteReactor = new DefaultMutableTreeNode(Repository.getInstance().getList().get(i).getsetClass());
+                for (int j=0; j<=8; j++){
+                    concreteReactor.add(new DefaultMutableTreeNode(Repository.getInstance().Returner(j, i)));
+                }
                 reactors.add(concreteReactor);
                 model = (DefaultTreeModel) ReactorsTree.getModel();
                 model.setRoot(reactors);

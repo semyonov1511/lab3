@@ -83,6 +83,7 @@ public class YAMLFileReader extends FileReader {
                 break;
             case MappingEnd:
                 addCurrentToList();
+                System.out.println(this.readedList.get(0).getsetClass());
                 collectionTag = "none";
                 mappingLevel--;
                 break;
@@ -103,8 +104,9 @@ public class YAMLFileReader extends FileReader {
             String value = event.getValue();
             currentReaded.setFiletype("YAML");
             switch (key) {
-                case "class" ->
+                case "class" -> {
                     currentReaded.setClass(value);
+                }
                 case "burnup" ->
                     currentReaded.setBurnup(Double.parseDouble(value));
                 case "kpd" ->
