@@ -33,7 +33,7 @@ public class YAMLFileReader extends FileReader {
         }
         return null;
     }
-    
+
     private Reactor currentReaded;
     private ArrayList<Reactor> readedList;
     private String key;
@@ -41,12 +41,11 @@ public class YAMLFileReader extends FileReader {
     private String collectionTag = "none";
     private int counter = 0;
     private int mappingLevel;
-    
-    
+
     public ArrayList<Reactor> getReadedList() {
         return readedList;
     }
-    
+
     public void loadFile(String path) throws FileNotFoundException, IOException, Exception {
         Yaml yaml = new Yaml();
         InputStream inputStream = findFile(path);
@@ -56,19 +55,19 @@ public class YAMLFileReader extends FileReader {
         inputStream.close();
     }
 
-    private InputStream findFile(String path) throws FileNotFoundException{
+    private InputStream findFile(String path) throws FileNotFoundException {
         InputStream inputStream = new FileInputStream(path);
         return inputStream;
     }
 
-    private void handleFile(Iterable<Event> data) throws Exception  {
+    private void handleFile(Iterable<Event> data) throws Exception {
         for (Event event : data) {
             parseEvent(event);
         }
     }
 
     private void parseEvent(Event event) throws Exception {
-        switch(event.getEventId()){
+        switch (event.getEventId()) {
             case StreamStart:
                 break;
             case StreamEnd:
@@ -77,30 +76,45 @@ public class YAMLFileReader extends FileReader {
                 createCurrent();
                 break;
             case DocumentEnd:
-                addCurrentToList();break;
+                addCurrentToList();
+                break;
             case MappingStart:
-                parseMapping((MappingStartEvent) event);break;
+                parseMapping((MappingStartEvent) event);
+                break;
             case MappingEnd:
-                collectionTag = "none";mappingLevel--;
+                collectionTag = "none";
+                mappingLevel--;
                 break;
             case Scalar:
-                parseScalarEvent((ScalarEvent) event);break;
+                parseScalarEvent((ScalarEvent) event);
+                break;
             default:
-                 throw new Exception("UnknownEvent");
-               
+                throw new Exception("UnknownEvent");
+
         }
     }
 
     private void parseScalarEvent(ScalarEvent event) {
-        if(keyCounter==0) {
+        if (keyCounter == 0) {
             key = event.getValue();
             keyCounter++;
         } else {
             String value = event.getValue();
-            currentReaded.addCharacteristic(key, value);
+            switch (key) {
+                case "class" -> currentReaded.setClass(value);
+                case "burnup" -> currentReaded.setBurnup(Double.parseDouble(value));
+                case "kpd" -> currentReaded.setKPD(Double.parseDouble(value));
+                case "enrichment" -> currentReaded.setEnrichment(Double.parseDouble(value));
+                case "termal_capacity" -> currentReaded.setTCapacity(Integer.parseInt(value));
+                case "electrical_capacity" -> currentReaded.setECapacity(Double.parseDouble(value));
+                case "life_time" -> currentReaded.setLifetime(Integer.parseInt(value));
+                case "first_load" -> currentReaded.setFirstload(Double.parseDouble(value));
+                default -> {
+                }
+            }
             keyCounter = 0;
         }
-        
+
     }
 
     private void createCurrent() {
@@ -112,7 +126,7 @@ public class YAMLFileReader extends FileReader {
     }
 
     private void parseMapping(MappingStartEvent mappingStartEvent) {
-        if (mappingLevel > 0){
+        if (mappingLevel > 0) {
             keyCounter = 0;
             collectionTag = key;
         }

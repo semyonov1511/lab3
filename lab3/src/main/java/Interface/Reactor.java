@@ -87,34 +87,4 @@ public class Reactor {
         return this.firstload;
     }
 
-    public void addCharacteristic(String key, String value) {
-        switch (key) {
-            case "class":
-                Class = value;
-                break;
-            case "burnup":
-                burnup = Double.parseDouble(value);
-                break;
-            case "kpd":
-                kpd = Double.parseDouble(value);
-                break;
-            case "enrichment":
-                enrichment = Double.parseDouble(value);
-                break;
-            case "termal_capacity":
-                TCapacity = Integer.parseInt(value);
-                break;
-            case "electrical_capacity":
-                ECapacity = Double.parseDouble(value);
-                break;
-            case "life_time":
-                lifetime = Integer.parseInt(value);
-                break;
-            case "first_load":
-                firstload = Double.parseDouble(value);
-                System.out.println(firstload);
-                break;
-            default:
-        }
-    }
 }
