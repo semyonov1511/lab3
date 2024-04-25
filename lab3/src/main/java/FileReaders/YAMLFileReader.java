@@ -100,6 +100,7 @@ public class YAMLFileReader extends FileReader {
             keyCounter++;
         } else {
             String value = event.getValue();
+            currentReaded.setFiletype("YAML");
             switch (key) {
                 case "class" -> currentReaded.setClass(value);
                 case "burnup" -> currentReaded.setBurnup(Double.parseDouble(value));

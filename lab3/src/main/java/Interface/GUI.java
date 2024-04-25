@@ -5,15 +5,19 @@ import java.io.File;
 import org.apache.commons.io.FilenameUtils;
 import javax.swing.JFileChooser;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 public class GUI extends javax.swing.JFrame {
 
     FileReader XMLfilereader = new XMLFileReader();
     FileReader YAMLfilereader = new YAMLFileReader();
     Repository repository = new Repository();
+    DefaultTreeModel model;
+
     public GUI() {
         initComponents();
     }
+    DefaultMutableTreeNode reactors = new DefaultMutableTreeNode("Reactors");
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -73,8 +77,12 @@ public class GUI extends javax.swing.JFrame {
             File file = new File(chooser.getSelectedFile().getAbsolutePath());
             XMLfilereader.setNextFileReader(YAMLfilereader);
             repository.setList(XMLfilereader.read(file));
-            for (int i=0; i<repository.getList().size();i++){
+            for (int i = 0; i < repository.getList().size(); i++) {
                 DefaultMutableTreeNode concreteReactor = new DefaultMutableTreeNode(repository.getList().get(i).getClass());
+                reactors.add(concreteReactor);
+                model = (DefaultTreeModel) ReactorsTree.getModel();
+                model.setRoot(reactors);
+                ReactorsTree.setModel(model);
             }
         }
     }//GEN-LAST:event_openFileActionPerformed

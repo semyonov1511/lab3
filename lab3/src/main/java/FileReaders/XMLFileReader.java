@@ -38,6 +38,7 @@ public class XMLFileReader extends FileReader{
                         case "Reactor":
                             //System.out.println("Название реактора - " + startElement.getAttributeByName(new QName("name")).getValue());
                             reactor = new Reactor();
+                            reactor.setFiletype("XML");
                             // Получаем атрибут id для каждого элемента Student
                             /* Attribute idAttr = startElement.getAttributeByName(new QName("id"));
                             if (idAttr != null) {
