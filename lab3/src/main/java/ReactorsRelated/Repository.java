@@ -1,19 +1,11 @@
-package Interface;
+package ReactorsRelated;
 
+import ReactorsRelated.Reactor;
 import java.util.ArrayList;
 
 public class Repository {
 
     ArrayList<Reactor> list = new ArrayList<>();
-
-    private static Repository INSTANCE;
-
-    public static Repository getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Repository();
-        }
-        return INSTANCE;
-    }
 
     public void setList(ArrayList<Reactor> rlist, String type) {
         list = rlist;

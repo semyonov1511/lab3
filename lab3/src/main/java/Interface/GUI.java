@@ -1,5 +1,6 @@
 package Interface;
 
+import ReactorsRelated.Repository;
 import FileReaders.*;
 import java.io.File;
 import org.apache.commons.io.FilenameUtils;
@@ -78,10 +79,10 @@ public class GUI extends javax.swing.JFrame {
             XMLfilereader.setNextFileReader(YAMLfilereader);
             YAMLfilereader.setNextFileReader(JSONfilereader);
             XMLfilereader.read(file);
-            for (int i = 0; i < Repository.getInstance().getList().size(); i++) {
-                DefaultMutableTreeNode concreteReactor = new DefaultMutableTreeNode(Repository.getInstance().getList().get(i).getsetClass());
+            for (int i = 0; i < Manager.getInstance().getList().size(); i++) {
+                DefaultMutableTreeNode concreteReactor = new DefaultMutableTreeNode(Manager.getInstance().getList().get(i).getsetClass());
                 for (int j=0; j<=8; j++){
-                    concreteReactor.add(new DefaultMutableTreeNode(Repository.getInstance().Returner(j, i)));
+                    concreteReactor.add(new DefaultMutableTreeNode(Manager.getInstance().Returner(j, i)));
                 }
                 reactors.add(concreteReactor);
                 model = (DefaultTreeModel) ReactorsTree.getModel();

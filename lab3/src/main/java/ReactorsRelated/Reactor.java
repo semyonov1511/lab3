@@ -1,4 +1,4 @@
-package Interface;
+package ReactorsRelated;
 
 public class Reactor {
     
@@ -20,8 +20,8 @@ public class Reactor {
         return this.filetype;
     }
 
-    public void setClass(String x) {
-        this.clas = x;
+    public void setClass(String clas) {
+        this.clas = clas;
     }
 
     public String getsetClass() {

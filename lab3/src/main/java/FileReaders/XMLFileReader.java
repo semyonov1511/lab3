@@ -1,8 +1,7 @@
 package FileReaders;
 
-import Interface.Reactor;
-import Interface.Repository;
-import java.awt.List;
+import Interface.Manager;
+import ReactorsRelated.Reactor;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,7 +14,7 @@ public class XMLFileReader extends FileReader{
     @Override
     public void read(File file) {
         if ("xml".equals(FilenameUtils.getExtension(file.getAbsolutePath()))) {
-            Repository.getInstance().setList(readXML(file),"XML");
+            Manager.getInstance().setList(readXML(file),"XML");
         } else if (nextFileReader != null) {
             nextFileReader.read(file);
         }

@@ -1,9 +1,8 @@
 package FileReaders;
 
-import Interface.Reactor;
-import Interface.Repository;
+import Interface.Manager;
+import ReactorsRelated.Reactor;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,7 +17,7 @@ public class YAMLFileReader extends FileReader {
     public void read(File file) {
         if ("yaml".equals(FilenameUtils.getExtension(file.getAbsolutePath()))) {
             try {
-                Repository.getInstance().setList(readYAML(file),"YAML");
+                Manager.getInstance().setList(readYAML(file),"YAML");
             } catch (IOException e) {
             }
         } else if (nextFileReader != null) {
