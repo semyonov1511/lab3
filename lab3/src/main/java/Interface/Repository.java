@@ -15,8 +15,11 @@ public class Repository {
         return INSTANCE;
     }
 
-    public void setList(ArrayList<Reactor> rlist) {
+    public void setList(ArrayList<Reactor> rlist, String type) {
         list = rlist;
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i).setFiletype(type);
+        }
     }
 
     public ArrayList<Reactor> getList() {
@@ -29,28 +32,28 @@ public class Repository {
                 return "Type of file - " + list.get(j).getFiletype();
             }
             case 1 -> {
-                return "Class - " +list.get(j).getsetClass();
+                return "Class - " + list.get(j).getsetClass();
             }
             case 2 -> {
-                return "Burnup - " +list.get(j).getBurnup();
+                return "Burnup - " + list.get(j).getBurnup();
             }
             case 3 -> {
-                return "KPD - " +list.get(j).getKPD();
+                return "KPD - " + list.get(j).getKPD();
             }
             case 4 -> {
-                return "Enrichment   - " +list.get(j).getEnrichment();
+                return "Enrichment   - " + list.get(j).getEnrichment();
             }
             case 5 -> {
-                return "Termal capacity - " +list.get(j).getTCapacity();
+                return "Termal capacity - " + list.get(j).getTCapacity();
             }
             case 6 -> {
-                return "Electrical capacity - " +list.get(j).getECapacity();
+                return "Electrical capacity - " + list.get(j).getECapacity();
             }
             case 7 -> {
-                return "Life time - " +list.get(j).getLifetime();
+                return "Life time - " + list.get(j).getLifetime();
             }
             case 8 -> {
-                return "First load - " +list.get(j).getFirstload();
+                return "First load - " + list.get(j).getFirstload();
             }
             default -> {
                 return null;
@@ -58,4 +61,3 @@ public class Repository {
         }
     }
 }
-

@@ -83,5 +83,4 @@ public class Reactor {
     public double getFirstload() {
         return this.first_load;
     }
-
 }
