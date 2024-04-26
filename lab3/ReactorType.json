@@ -1,5 +1,4 @@
-{
-  "ReactorType": {
+ {
     "MKER": {
       "class": "MKER",
       "burnup": 30,
@@ -150,5 +149,5 @@
       "life_time": 60,
       "first_load": 79.84
     }
-  }
+  
 }
