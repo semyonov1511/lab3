@@ -16,7 +16,7 @@ public class JSONFileReader extends FileReader {
     public void read(File file) {
         if ("json".equals(FilenameUtils.getExtension(file.getAbsolutePath()))) {
             try {
-                Repository.getInstance().setList(readYAML(file), "YAML");
+                Repository.getInstance().setList(readYAML(file), "JSON");
             } catch (IOException e) {
             }
         } else if (nextFileReader != null) {
@@ -25,9 +25,8 @@ public class JSONFileReader extends FileReader {
     }
 
     public ArrayList<Reactor> readYAML(File file) throws FileNotFoundException, IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> jsonData = objectMapper.readValue(file, Map.class);
-        System.out.println(jsonData);
-        return null;
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayList<Reactor> list = mapper.readValue(file, mapper.getTypeFactory().constructCollectionType(ArrayList.class, Reactor.class));
+        return list;
     }
 }

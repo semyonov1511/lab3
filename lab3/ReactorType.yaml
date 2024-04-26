@@ -16,8 +16,8 @@ RBMK:
         electrical_capacity: 1000
         life_time: 40
         first_load: 192
-VVER_1000:
-        class: VVER-1200
+VVER_1200:
+        class: VVER_1200
         burnup: 40
         kpd: 0.33
         enrichment: 0.0385
@@ -125,7 +125,7 @@ KLT_40:
         life_time: 36
         first_load: 0.007
 PWR_TEST:
-        class: PWR
+        class: PWR_TEST
         burnup: 40
         kpd: 0.33
         enrichment: 0.044

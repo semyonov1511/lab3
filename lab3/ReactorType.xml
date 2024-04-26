@@ -1,7 +1,7 @@
 <ReactorType>
-				<Reactor name="MKER">
-					<class>MKER</class>	
-					<burnup>30</burnup>
+		<Reactor name="MKER">
+		    <class>MKER</class>	
+		    <burnup>30</burnup>
                     <kpd>0.352</kpd>
                     <enrichment>0.024</enrichment>
                     <termal_capacity>4250</termal_capacity>
@@ -19,8 +19,8 @@
                     <life_time>40</life_time>
                     <first_load>192</first_load>
                 </Reactor>
-                <Reactor name="VVER_1000">
-                    <class>VVER-1200</class>
+                <Reactor name="VVER_1200">
+                    <class>VVER_1200</class>
                     <burnup>40</burnup>
                     <kpd>0.33</kpd>
                     <enrichment>0.0385</enrichment>
@@ -140,7 +140,7 @@
                     <first_load>0.007</first_load>
                 </Reactor>
                 <Reactor name="PWR_TEST">
-                    <class>PWR</class>
+                    <class>PWR_TEST</class>
                     <burnup>40</burnup>
 					<kpd>0.33</kpd>
                     <enrichment>0.044</enrichment>
@@ -148,5 +148,5 @@
                     <electrical_capacity>1056</electrical_capacity>
                     <life_time>60</life_time>
                     <first_load>79.84</first_load>
-				</Reactor>
+		</Reactor>
 </ReactorType>

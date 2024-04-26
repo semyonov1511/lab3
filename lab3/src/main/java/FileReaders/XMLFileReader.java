@@ -21,7 +21,7 @@ public class XMLFileReader extends FileReader{
         }
     }
     public ArrayList<Reactor> readXML(File file) {
-        ArrayList<Reactor> reactorList = new ArrayList<>();
+        ArrayList<Reactor> list = new ArrayList<>();
         Reactor reactor = null;
         XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
         try {
@@ -73,13 +73,13 @@ public class XMLFileReader extends FileReader{
                 if (xmlEvent.isEndElement()) {
                     EndElement endElement = xmlEvent.asEndElement();
                     if (endElement.getName().getLocalPart().equals("Reactor")) {
-                        reactorList.add(reactor);
+                        list.add(reactor);
                     }
                 }
             }
         } catch (FileNotFoundException | XMLStreamException exc) {
         }
-        return reactorList;
+        return list;
     }
 
 }

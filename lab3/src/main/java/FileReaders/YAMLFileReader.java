@@ -27,8 +27,8 @@ public class YAMLFileReader extends FileReader {
     }
 
     public ArrayList<Reactor> readYAML(File file) throws FileNotFoundException, IOException {
-        Map<String, Reactor> reactorMap = (new YAMLMapper()).readValue(file, new TypeReference<Map<String, Reactor>>() {});
-        ArrayList<Reactor> reactorlist = new ArrayList<>(reactorMap.values());
-        return reactorlist;
+        Map<String, Reactor> map = (new YAMLMapper()).readValue(file, new TypeReference<Map<String, Reactor>>() {});
+        ArrayList<Reactor> list = new ArrayList<>(map.values());
+        return list;
     }
 }

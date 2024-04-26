@@ -1,5 +1,4 @@
- {
-    "MKER": {
+[   {
       "class": "MKER",
       "burnup": 30,
       "kpd": 0.352,
@@ -9,7 +8,7 @@
       "life_time": 50,
       "first_load": 192
     },
-    "RBMK": {
+    {
       "class": "RBMK",
       "burnup": 25,
       "kpd": 0.3125,
@@ -19,7 +18,7 @@
       "life_time": 40,
       "first_load": 192
     },
-    "VVER_1000": {
+    {
       "class": "VVER-1200",
       "burnup": 40,
       "kpd": 0.33,
@@ -29,7 +28,7 @@
       "life_time": 60,
       "first_load": 79.84
     },
-    "AP1000": {
+    {
       "class": "AP1000",
       "burnup": 43.2,
       "kpd": 0.339,
@@ -39,7 +38,7 @@
       "life_time": 60,
       "first_load": 93.65
     },
-    "BWR": {
+    {
       "class": "BWR",
       "burnup": 45,
       "kpd": 0.343,
@@ -49,7 +48,7 @@
       "life_time": 60,
       "first_load": 128
     },
-    "ABWR": {
+    {
       "class": "ABWR",
       "burnup": 46.4,
       "kpd": 0.3655,
@@ -59,7 +58,7 @@
       "life_time": 60,
       "first_load": 128
     },
-    "EPR": {
+    {
       "class": "EPR",
       "burnup": 36.1,
       "kpd": 0.3515,
@@ -69,7 +68,7 @@
       "life_time": 60,
       "first_load": 140.66
     },
-    "MAGNOX": {
+    {
       "class": "MAGNOX",
       "burnup": 4.5,
       "kpd": 0.23,
@@ -79,7 +78,7 @@
       "life_time": 60,
       "first_load": 120
     },
-    "BN": {
+    {
       "class": "BN",
       "burnup": 140,
       "kpd": 42.05,
@@ -89,7 +88,7 @@
       "life_time": 60,
       "first_load": 50.4
     },
-    "PWR": {
+    {
       "class": "PWR",
       "burnup": 42,
       "kpd": 34,
@@ -99,7 +98,7 @@
       "life_time": 50,
       "first_load": 74
     },
-    "CPR_1000": {
+    {
       "class": "CPR-1000",
       "burnup": 52,
       "kpd": 35.1,
@@ -109,7 +108,7 @@
       "life_time": 40,
       "first_load": 77
     },
-    "CANDU": {
+    {
       "class": "CANDU",
       "burnup": 8,
       "kpd": 0.3,
@@ -119,7 +118,7 @@
       "life_time": 60,
       "first_load": 38.9
     },
-    "PHWR": {
+    {
       "class": "PHWR",
       "burnup": 8,
       "kpd": 0.3,
@@ -129,7 +128,7 @@
       "life_time": 60,
       "first_load": 38.9
     },
-    "KLT_40": {
+    {
       "class": "KLT-40",
       "burnup": 42,
       "kpd": 0.3,
@@ -139,8 +138,8 @@
       "life_time": 36,
       "first_load": 0.007
     },
-    "PWR_TEST": {
-      "class": "PWR",
+    {
+      "class": "PWR_TEST",
       "burnup": 40,
       "kpd": 0.33,
       "enrichment": 0.044,
@@ -149,5 +148,4 @@
       "life_time": 60,
       "first_load": 79.84
     }
-  
-}
+]
