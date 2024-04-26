@@ -1,5 +1,4 @@
-ReactorType:
-      MKER:
+MKER:
         class: MKER
         burnup: 30
         kpd: 0.352
@@ -8,7 +7,7 @@ ReactorType:
         electrical_capacity: 1500
         life_time: 50
         first_load: 192
-      RBMK:
+RBMK:
         class: RBMK
         burnup: 25
         kpd: 0.3125
@@ -17,7 +16,7 @@ ReactorType:
         electrical_capacity: 1000
         life_time: 40
         first_load: 192
-      VVER_1000:
+VVER_1000:
         class: VVER-1200
         burnup: 40
         kpd: 0.33
@@ -26,7 +25,7 @@ ReactorType:
         electrical_capacity: 1056
         life_time: 60
         first_load: 79.84
-      AP1000:
+AP1000:
         class: AP1000
         burnup: 43.20
         kpd: 0.339
@@ -35,7 +34,7 @@ ReactorType:
         electrical_capacity: 1158
         life_time: 60
         first_load: 93.65
-      BWR:
+BWR:
         class: BWR
         burnup: 45
         kpd: 0.343
@@ -44,7 +43,7 @@ ReactorType:
         electrical_capacity: 1252
         life_time: 60
         first_load: 128.00
-      ABWR:
+ABWR:
         class: ABWR
         burnup: 46.40
         kpd: 0.3655
@@ -53,7 +52,7 @@ ReactorType:
         electrical_capacity: 1645
         life_time: 60
         first_load: 128.00
-      EPR:
+EPR:
         class: EPR
         burnup: 36.10
         kpd: 0.3515
@@ -62,7 +61,7 @@ ReactorType:
         electrical_capacity: 1404.5
         life_time: 60
         first_load: 140.66
-      MAGNOX:
+MAGNOX:
         class: MAGNOX
         burnup: 4.5
         kpd: 0.23
@@ -71,7 +70,7 @@ ReactorType:
         electrical_capacity: 184
         life_time: 60
         first_load: 120
-      BN:
+BN:
         class: BN
         burnup: 140
         kpd: 42.05
@@ -80,7 +79,7 @@ ReactorType:
         electrical_capacity: 1220
         life_time: 60
         first_load: 50.4
-      PWR:
+PWR:
         class: PWR
         burnup: 42.0
         kpd: 34.0
@@ -89,7 +88,7 @@ ReactorType:
         electrical_capacity: 1150
         life_time: 50
         first_load: 74.0
-      CPR_1000:
+CPR_1000:
         class: CPR-1000
         burnup: 52.0
         kpd: 35.1
@@ -98,7 +97,7 @@ ReactorType:
         electrical_capacity: 1021
         life_time: 40
         first_load: 77.0
-      CANDU:
+CANDU:
         class: CANDU
         burnup: 8
         kpd: 0.30
@@ -107,7 +106,7 @@ ReactorType:
         electrical_capacity: 742
         life_time: 60
         first_load: 38.9
-      PHWR:
+PHWR:
         class: PHWR
         burnup: 8
         kpd: 0.30
@@ -116,7 +115,7 @@ ReactorType:
         electrical_capacity: 742
         life_time: 60
         first_load: 38.9
-      KLT_40:
+KLT_40:
         class: KLT-40
         burnup: 42
         kpd: 0.30
@@ -125,7 +124,7 @@ ReactorType:
         electrical_capacity: 32
         life_time: 36
         first_load: 0.007
-      PWR_TEST:
+PWR_TEST:
         class: PWR
         burnup: 40
         kpd: 0.33

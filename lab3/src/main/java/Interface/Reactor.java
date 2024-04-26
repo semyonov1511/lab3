@@ -1,16 +1,16 @@
 package Interface;
 
 public class Reactor {
-
-    private String filetype;
-    private String clas;
-    private double burnup;
-    private double kpd;
-    private double enrichment;
-    private int TCapacity;
-    private double ECapacity;
-    private int lifetime;
-    private double firstload;
+    
+    public String filetype;
+    public String clas;
+    public double burnup;
+    public double kpd;
+    public double enrichment;
+    public int termal_capacity;
+    public double electrical_capacity;
+    public int life_time;
+    public double first_load;
 
     public void setFiletype(String filetype) {
         this.filetype = filetype;
@@ -53,35 +53,35 @@ public class Reactor {
     }
 
     public void setTCapacity(int TCapacity) {
-        this.TCapacity = TCapacity;
+        this.electrical_capacity = TCapacity;
     }
 
     public int getTCapacity() {
-        return this.TCapacity;
+        return this.termal_capacity;
     }
 
     public void setECapacity(Double ECapacity) {
-        this.ECapacity = ECapacity;
+        this.electrical_capacity = ECapacity;
     }
 
     public Double getECapacity() {
-        return this.ECapacity;
+        return this.electrical_capacity;
     }
 
     public void setLifetime(int lifetime) {
-        this.lifetime = lifetime;
+        this.life_time = lifetime;
     }
 
     public int getLifetime() {
-        return this.lifetime;
+        return this.life_time;
     }
 
     public void setFirstload(double firstload) {
-        this.firstload = firstload;
+        this.first_load = firstload;
     }
 
     public double getFirstload() {
-        return this.firstload;
+        return this.first_load;
     }
 
 }
