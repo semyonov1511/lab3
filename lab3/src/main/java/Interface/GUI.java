@@ -1,18 +1,12 @@
 package Interface;
 
-import ReactorsRelated.Repository;
-import FileReaders.*;
 import java.io.File;
-import org.apache.commons.io.FilenameUtils;
 import javax.swing.JFileChooser;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
 public class GUI extends javax.swing.JFrame {
-
-    FileReader XMLfilereader = new XMLFileReader();
-    FileReader YAMLfilereader = new YAMLFileReader();
-    FileReader JSONfilereader = new JSONFileReader();
+    
     DefaultTreeModel model;
 
     public GUI() {
@@ -75,10 +69,7 @@ public class GUI extends javax.swing.JFrame {
         if (chooser.getSelectedFile() == null) {
             System.out.println("Choose a file!");
         } else {
-            File file = new File(chooser.getSelectedFile().getAbsolutePath());
-            XMLfilereader.setNextFileReader(YAMLfilereader);
-            YAMLfilereader.setNextFileReader(JSONfilereader);
-            XMLfilereader.read(file);
+            Manager.getInstance().read(new File(chooser.getSelectedFile().getAbsolutePath()));
             for (int i = 0; i < Manager.getInstance().getList().size(); i++) {
                 DefaultMutableTreeNode concreteReactor = new DefaultMutableTreeNode(Manager.getInstance().getList().get(i).getsetClass());
                 for (int j=0; j<=8; j++){
