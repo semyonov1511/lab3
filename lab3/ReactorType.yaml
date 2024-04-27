@@ -1,5 +1,5 @@
 MKER:
-        class: MKER
+        type: MKER
         burnup: 30
         kpd: 0.352
         enrichment: 0.024
@@ -8,7 +8,7 @@ MKER:
         life_time: 50
         first_load: 192
 RBMK:
-        class: RBMK
+        type: RBMK
         burnup: 25
         kpd: 0.3125
         enrichment: 0.027
@@ -17,7 +17,7 @@ RBMK:
         life_time: 40
         first_load: 192
 VVER_1200:
-        class: VVER_1200
+        type: VVER_1200
         burnup: 40
         kpd: 0.33
         enrichment: 0.0385
@@ -26,7 +26,7 @@ VVER_1200:
         life_time: 60
         first_load: 79.84
 AP1000:
-        class: AP1000
+        type: AP1000
         burnup: 43.20
         kpd: 0.339
         enrichment: 0.048
@@ -35,7 +35,7 @@ AP1000:
         life_time: 60
         first_load: 93.65
 BWR:
-        class: BWR
+        type: BWR
         burnup: 45
         kpd: 0.343
         enrichment: 0.041
@@ -44,7 +44,7 @@ BWR:
         life_time: 60
         first_load: 128.00
 ABWR:
-        class: ABWR
+        type: ABWR
         burnup: 46.40
         kpd: 0.3655
         enrichment: 0.036
@@ -53,7 +53,7 @@ ABWR:
         life_time: 60
         first_load: 128.00
 EPR:
-        class: EPR
+        type: EPR
         burnup: 36.10
         kpd: 0.3515
         enrichment: 0.032
@@ -62,7 +62,7 @@ EPR:
         life_time: 60
         first_load: 140.66
 MAGNOX:
-        class: MAGNOX
+        type: MAGNOX
         burnup: 4.5
         kpd: 0.23
         enrichment: 0.01
@@ -71,7 +71,7 @@ MAGNOX:
         life_time: 60
         first_load: 120
 BN:
-        class: BN
+        type: BN
         burnup: 140
         kpd: 42.05
         enrichment: 0.21
@@ -80,7 +80,7 @@ BN:
         life_time: 60
         first_load: 50.4
 PWR:
-        class: PWR
+        type: PWR
         burnup: 42.0
         kpd: 34.0
         enrichment: 0.045
@@ -89,7 +89,7 @@ PWR:
         life_time: 50
         first_load: 74.0
 CPR_1000:
-        class: CPR-1000
+        type: CPR-1000
         burnup: 52.0
         kpd: 35.1
         enrichment: 0.045
@@ -98,7 +98,7 @@ CPR_1000:
         life_time: 40
         first_load: 77.0
 CANDU:
-        class: CANDU
+        type: CANDU
         burnup: 8
         kpd: 0.30
         enrichment: 0.0071
@@ -107,7 +107,7 @@ CANDU:
         life_time: 60
         first_load: 38.9
 PHWR:
-        class: PHWR
+        type: PHWR
         burnup: 8
         kpd: 0.30
         enrichment: 0.0071
@@ -116,7 +116,7 @@ PHWR:
         life_time: 60
         first_load: 38.9
 KLT_40:
-        class: KLT-40
+        type: KLT-40
         burnup: 42
         kpd: 0.30
         enrichment: 0.16
@@ -125,7 +125,7 @@ KLT_40:
         life_time: 36
         first_load: 0.007
 PWR_TEST:
-        class: PWR_TEST
+        type: PWR_TEST
         burnup: 40
         kpd: 0.33
         enrichment: 0.044

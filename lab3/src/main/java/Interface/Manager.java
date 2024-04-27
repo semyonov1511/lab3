@@ -11,15 +11,14 @@ import java.util.ArrayList;
 
 public class Manager {
 
-    private static Manager INSTANCE;
-
     Repository repository = new Repository();
-
-    public static Manager getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Manager();
-        }
-        return INSTANCE;
+    FileReader XMLfilereader = new XMLFileReader();
+    
+    public Manager() {
+        FileReader YAMLfilereader = new YAMLFileReader();
+        FileReader JSONfilereader = new JSONFileReader();
+        XMLfilereader.setNextFileReader(YAMLfilereader);
+        YAMLfilereader.setNextFileReader(JSONfilereader);
     }
 
     public void setList(ArrayList<Reactor> rlist, String type) {
@@ -35,12 +34,7 @@ public class Manager {
     }
 
     public void read(File file) {
-        FileReader XMLfilereader = new XMLFileReader();
-        FileReader YAMLfilereader = new YAMLFileReader();
-        FileReader JSONfilereader = new JSONFileReader();
-        XMLfilereader.setNextFileReader(YAMLfilereader);
-        YAMLfilereader.setNextFileReader(JSONfilereader);
-        XMLfilereader.read(file);
-    }
+        setList(XMLfilereader.read(file), "yaml");
 
+    }
 }

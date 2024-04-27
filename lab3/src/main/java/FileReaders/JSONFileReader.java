@@ -2,28 +2,32 @@ package FileReaders;
 
 import Interface.Manager;
 import ReactorsRelated.Reactor;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.io.FilenameUtils;
 
 public class JSONFileReader extends FileReader {
 
     @Override
-    public void read(File file) {
+    public ArrayList<Reactor> read(File file) {
         if ("json".equals(FilenameUtils.getExtension(file.getAbsolutePath()))) {
             try {
-                Manager.getInstance().setList(readJSON(file), "JSON");
+                return readJSON(file);
             } catch (IOException e) {
             }
         } else if (nextFileReader != null) {
-            nextFileReader.read(file);
+            return nextFileReader.read(file);
         }
+        return null;
     }
 
-        public ArrayList<Reactor> readJSON(File file) throws FileNotFoundException, IOException {
+    public ArrayList<Reactor> readJSON(File file) throws FileNotFoundException, IOException {
         ObjectMapper mapper = new ObjectMapper();
         ArrayList<Reactor> list = mapper.readValue(file, mapper.getTypeFactory().constructCollectionType(ArrayList.class, Reactor.class));
         return list;

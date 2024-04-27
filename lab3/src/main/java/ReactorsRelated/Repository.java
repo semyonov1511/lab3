@@ -1,6 +1,8 @@
 package ReactorsRelated;
 
-import ReactorsRelated.Reactor;
+import Interface.Manager;
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 public class Repository {
@@ -18,13 +20,13 @@ public class Repository {
         return list;
     }
 
-    public Object Returner(int i, int j) {
+    public Object Returner(int i, int j){
         switch (i) {
             case 0 -> {
                 return "Type of file - " + list.get(j).getFiletype();
             }
             case 1 -> {
-                return "Class - " + list.get(j).getsetClass();
+                return "Class - " + list.get(j).getType();
             }
             case 2 -> {
                 return "Burnup - " + list.get(j).getBurnup();

@@ -1,9 +1,19 @@
 package ReactorsRelated;
 
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Reactor {
-    
+
     public String filetype;
-    public String clas;
+    public String type;
     public double burnup;
     public double kpd;
     public double enrichment;
@@ -16,16 +26,16 @@ public class Reactor {
         this.filetype = filetype;
     }
 
-    public String getFiletype() {
+    public String getFiletype(){
         return this.filetype;
     }
 
-    public void setClass(String clas) {
-        this.clas = clas;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getsetClass() {
-        return this.clas;
+    public String getType(){
+        return this.type;
     }
 
     public void setBurnup(double burnup) {
@@ -83,4 +93,5 @@ public class Reactor {
     public double getFirstload() {
         return this.first_load;
     }
+
 }

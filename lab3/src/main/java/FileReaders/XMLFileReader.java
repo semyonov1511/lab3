@@ -12,12 +12,13 @@ import org.apache.commons.io.FilenameUtils;
 
 public class XMLFileReader extends FileReader{
     @Override
-    public void read(File file) {
+    public ArrayList<Reactor> read(File file) {
         if ("xml".equals(FilenameUtils.getExtension(file.getAbsolutePath()))) {
-            Manager.getInstance().setList(readXML(file),"XML");
+            return readXML(file);
         } else if (nextFileReader != null) {
-            nextFileReader.read(file);
+            return nextFileReader.read(file);
         }
+        return null;
     }
     public ArrayList<Reactor> readXML(File file) {
         ArrayList<Reactor> list = new ArrayList<>();
@@ -35,7 +36,7 @@ public class XMLFileReader extends FileReader{
                         }
                         case "class" -> {
                             xmlEvent = reader.nextEvent();
-                            reactor.setClass(xmlEvent.asCharacters().getData());
+                            reactor.setType(xmlEvent.asCharacters().getData());
                         }
                         case "burnup" -> {
                             xmlEvent = reader.nextEvent();

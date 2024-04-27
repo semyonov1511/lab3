@@ -1,6 +1,8 @@
 package FileReaders;
 
+import ReactorsRelated.Reactor;
 import java.io.File;
+import java.util.ArrayList;
 
 public abstract class FileReader {
     
@@ -10,6 +12,6 @@ public abstract class FileReader {
         this.nextFileReader = nextFileReader;
     }
     
-    public abstract void read(File file);
+    public abstract ArrayList<Reactor> read(File file);
     
 }

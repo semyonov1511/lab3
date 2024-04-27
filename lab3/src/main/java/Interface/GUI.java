@@ -1,5 +1,6 @@
 package Interface;
 
+import ReactorsRelated.Reactor;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -8,6 +9,7 @@ import javax.swing.tree.DefaultTreeModel;
 public class GUI extends javax.swing.JFrame {
     
     DefaultTreeModel model;
+    Manager manager = new Manager();
 
     public GUI() {
         initComponents();
@@ -69,11 +71,12 @@ public class GUI extends javax.swing.JFrame {
         if (chooser.getSelectedFile() == null) {
             System.out.println("Choose a file!");
         } else {
-            Manager.getInstance().read(new File(chooser.getSelectedFile().getAbsolutePath()));
-            for (int i = 0; i < Manager.getInstance().getList().size(); i++) {
-                DefaultMutableTreeNode concreteReactor = new DefaultMutableTreeNode(Manager.getInstance().getList().get(i).getsetClass());
+            manager.read(new File(chooser.getSelectedFile().getAbsolutePath()));
+            //for (Reactor reactor : Manager.getInstance().getList()) {
+            for (int i = 0; i < manager.getList().size(); i++) {
+                DefaultMutableTreeNode concreteReactor = new DefaultMutableTreeNode(manager.getList().get(i).getType());
                 for (int j=0; j<=8; j++){
-                    concreteReactor.add(new DefaultMutableTreeNode(Manager.getInstance().Returner(j, i)));
+                    concreteReactor.add(new DefaultMutableTreeNode(manager.Returner(j, i)));
                 }
                 reactors.add(concreteReactor);
                 model = (DefaultTreeModel) ReactorsTree.getModel();
