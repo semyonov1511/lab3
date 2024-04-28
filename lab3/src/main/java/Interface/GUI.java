@@ -73,7 +73,6 @@ public class GUI extends javax.swing.JFrame {
         } else {
             manager.setList(new File(chooser.getSelectedFile().getAbsolutePath()));
             for (Reactor reactor : manager.getList()) {
-                reactor.setParameters();
                 DefaultMutableTreeNode concreteReactor = new DefaultMutableTreeNode(reactor.getType());
                 for (String parameter : reactor.getParameters()){
                     concreteReactor.add(new DefaultMutableTreeNode(parameter));
