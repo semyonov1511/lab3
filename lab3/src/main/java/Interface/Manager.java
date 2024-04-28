@@ -32,8 +32,4 @@ public class Manager {
         return repository.getList();
     }
     
-    public void getParameters(Reactor reactor){
-        reactor.getParameters();
-    }
-    
 }

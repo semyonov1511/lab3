@@ -67,7 +67,6 @@ public class GUI extends javax.swing.JFrame {
     private void openFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileActionPerformed
         JFileChooser chooser = new JFileChooser();
         chooser.setCurrentDirectory(new File("."));
-        int response = chooser.showOpenDialog(null);
         if (chooser.getSelectedFile() == null) {
             System.out.println("Choose a file!");
         } else {

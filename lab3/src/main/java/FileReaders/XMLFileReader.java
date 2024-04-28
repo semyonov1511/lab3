@@ -1,6 +1,5 @@
 package FileReaders;
 
-import Interface.Manager;
 import ReactorsRelated.Reactor;
 import java.io.File;
 import java.io.FileInputStream;

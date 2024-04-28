@@ -1,6 +1,5 @@
 package FileReaders;
 
-import Interface.Manager;
 import ReactorsRelated.Reactor;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;

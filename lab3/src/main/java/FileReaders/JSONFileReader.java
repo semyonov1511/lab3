@@ -1,15 +1,11 @@
 package FileReaders;
 
-import Interface.Manager;
 import ReactorsRelated.Reactor;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.commons.io.FilenameUtils;
 
 public class JSONFileReader extends FileReader {
