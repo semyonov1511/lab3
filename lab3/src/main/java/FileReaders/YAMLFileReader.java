@@ -17,9 +17,14 @@ public class YAMLFileReader extends FileReader {
 
     @Override
     public ArrayList<Reactor> read(File file) {
+        ArrayList<Reactor> list;
         if ("yaml".equals(FilenameUtils.getExtension(file.getAbsolutePath()))) {
             try {
-                return readYAML(file);
+                list = readYAML(file);
+                for (Reactor reactor : list) {
+                    reactor.setFiletype("YAML");
+                }
+                return list;
             } catch (IOException e) {
                 System.out.println("на ямле баг");
             }
@@ -32,7 +37,8 @@ public class YAMLFileReader extends FileReader {
     public ArrayList<Reactor> readYAML(File file) throws FileNotFoundException {
         Map<String, Reactor> map = null;
         try {
-            map = (new YAMLMapper()).readValue(file, new TypeReference<Map<String, Reactor>>() {});
+            map = (new YAMLMapper()).readValue(file, new TypeReference<Map<String, Reactor>>() {
+            });
         } catch (IOException ex) {
             Logger.getLogger(YAMLFileReader.class.getName()).log(Level.SEVERE, null, ex);
         }

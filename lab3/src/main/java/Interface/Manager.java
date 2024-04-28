@@ -21,20 +21,19 @@ public class Manager {
         YAMLfilereader.setNextFileReader(JSONfilereader);
     }
 
-    public void setList(ArrayList<Reactor> rlist, String type) {
-        repository.setList(rlist, type);
+    public void setList(File file) {
+        repository.setList(XMLfilereader.read(file));
+        for (Reactor reactor : repository.getList()){
+            reactor.setParameters();
+        }
     }
 
     public ArrayList<Reactor> getList() {
         return repository.getList();
     }
-
-    public Object Returner(int i, int j) {
-        return repository.Returner(i, j);
+    
+    public void getParameters(Reactor reactor){
+        reactor.getParameters();
     }
-
-    public void read(File file) {
-        setList(XMLfilereader.read(file), "yaml");
-
-    }
+    
 }

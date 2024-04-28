@@ -16,9 +16,14 @@ public class JSONFileReader extends FileReader {
 
     @Override
     public ArrayList<Reactor> read(File file) {
+        ArrayList<Reactor> list;
         if ("json".equals(FilenameUtils.getExtension(file.getAbsolutePath()))) {
             try {
-                return readJSON(file);
+                list = readJSON(file);
+                for (Reactor reactor : list) {
+                    reactor.setFiletype("JSON");
+                }
+                return list;
             } catch (IOException e) {
             }
         } else if (nextFileReader != null) {

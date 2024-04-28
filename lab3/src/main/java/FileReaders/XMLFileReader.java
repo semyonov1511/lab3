@@ -13,8 +13,13 @@ import org.apache.commons.io.FilenameUtils;
 public class XMLFileReader extends FileReader{
     @Override
     public ArrayList<Reactor> read(File file) {
+        ArrayList<Reactor> list;
         if ("xml".equals(FilenameUtils.getExtension(file.getAbsolutePath()))) {
-            return readXML(file);
+            list = readXML(file);
+            for (Reactor reactor : list){
+                reactor.setFiletype("XML");
+            }
+            return list;
         } else if (nextFileReader != null) {
             return nextFileReader.read(file);
         }

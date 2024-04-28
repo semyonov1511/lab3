@@ -9,11 +9,8 @@ public class Repository {
 
     ArrayList<Reactor> list = new ArrayList<>();
 
-    public void setList(ArrayList<Reactor> rlist, String type) {
+    public void setList(ArrayList<Reactor> rlist) {
         list = rlist;
-        for (int i = 0; i < list.size(); i++) {
-            list.get(i).setFiletype(type);
-        }
     }
 
     public ArrayList<Reactor> getList() {

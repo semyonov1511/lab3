@@ -71,12 +71,12 @@ public class GUI extends javax.swing.JFrame {
         if (chooser.getSelectedFile() == null) {
             System.out.println("Choose a file!");
         } else {
-            manager.read(new File(chooser.getSelectedFile().getAbsolutePath()));
-            //for (Reactor reactor : Manager.getInstance().getList()) {
-            for (int i = 0; i < manager.getList().size(); i++) {
-                DefaultMutableTreeNode concreteReactor = new DefaultMutableTreeNode(manager.getList().get(i).getType());
-                for (int j=0; j<=8; j++){
-                    concreteReactor.add(new DefaultMutableTreeNode(manager.Returner(j, i)));
+            manager.setList(new File(chooser.getSelectedFile().getAbsolutePath()));
+            for (Reactor reactor : manager.getList()) {
+                reactor.setParameters();
+                DefaultMutableTreeNode concreteReactor = new DefaultMutableTreeNode(reactor.getType());
+                for (String parameter : reactor.getParameters()){
+                    concreteReactor.add(new DefaultMutableTreeNode(parameter));
                 }
                 reactors.add(concreteReactor);
                 model = (DefaultTreeModel) ReactorsTree.getModel();

@@ -5,6 +5,7 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -21,6 +22,7 @@ public class Reactor {
     public double electrical_capacity;
     public int life_time;
     public double first_load;
+    public ArrayList<String> parameters = new ArrayList<>();
 
     public void setFiletype(String filetype) {
         this.filetype = filetype;
@@ -93,5 +95,18 @@ public class Reactor {
     public double getFirstload() {
         return this.first_load;
     }
-
+    
+    public void setParameters(){
+        parameters.add("Type of file - " + getFiletype());
+        parameters.add("Burnup - " + getBurnup());
+        parameters.add("KPD - " + getKPD());
+        parameters.add("Enrichment   - " + getEnrichment());
+        parameters.add("Termal capacity - " + getTCapacity());
+        parameters.add("Electrical capacity - " + getECapacity());
+        parameters.add("Life time - " + getLifetime());
+        parameters.add("First load - " + getFirstload());
+    }
+    public ArrayList<String> getParameters(){
+        return parameters;
+    }
 }
