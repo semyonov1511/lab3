@@ -9,7 +9,7 @@ public class PostgreSQLConnectionExample {
     public static void main(String[] args) {
         Connection connection = null;
         try{
-            String url = "";
+            String url = "jdbc:postgresql://localhost:5432/postgres";
             String user = "postgres";
             String password = "1559";
             connection = DriverManager.getConnection(url, user, password);

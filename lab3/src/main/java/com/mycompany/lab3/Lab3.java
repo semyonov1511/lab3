@@ -13,3 +13,4 @@ public class Lab3 {
             gui.setVisible(true);
     }
 }
+            
