@@ -1,0 +1,31 @@
+package lab4;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class PostgreSQLConnectionExample {
+
+    public static void main(String[] args) {
+        Connection connection = null;
+        try{
+            String url = "";
+            String user = "postgres";
+            String password = "1559";
+            connection = DriverManager.getConnection(url, user, password);
+            if (connection != null){
+                System.out.println("Успешное подключение к базе данных PostgreSQL");
+            }
+        } catch (SQLException e){
+            System.out.println("Ошибка подключения к базе данных: " + e.getMessage());
+        } finally {
+            try {
+                if (connection != null){
+                    connection.close();
+                }
+            } catch (SQLException e){
+                  System.out.println("Ошибка при закрытии соединения: " + e.getMessage());  
+            }
+        }
+    }
+}
