@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class SQLconnector {
-
-    public Connection getConnection() {
+    
+    public Connection connectToDatabase() {
         Connection connection = null;
         try {
             String url = "jdbc:postgresql://localhost:5432/postgres";
@@ -29,4 +29,6 @@ public class SQLconnector {
         }
         return connection;
     }
+    
+    public void readDatabase(ArrayList<)
 }
