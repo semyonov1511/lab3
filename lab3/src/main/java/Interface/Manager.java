@@ -1,7 +1,7 @@
 package Interface;
 
 import DBrelated.SQLconnector;
-import DBrelated.SQLreader;
+import DBrelated.SQLhandler;
 import FileReaders.FileReader;
 import FileReaders.JSONFileReader;
 import FileReaders.XMLFileReader;
@@ -17,7 +17,7 @@ public class Manager {
     Repository repository = new Repository();
     FileReader XMLfilereader = new XMLFileReader();
     SQLconnector connector = new SQLconnector();
-    SQLreader reader = new SQLreader();
+    SQLhandler reader = new SQLhandler();
 
     public void connect() {
         connector.setConnection();

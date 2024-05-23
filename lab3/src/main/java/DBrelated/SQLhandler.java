@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SQLreader {
+public class SQLhandler {
 
     public ArrayList<Reactor> readDataBase(ArrayList<Reactor> reactorTypes) {
         SQLconnector connector = new SQLconnector();
