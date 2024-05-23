@@ -19,7 +19,7 @@ public class SQLconnector {
     public Connection connectToDatabase() {
         Connection connection = null;
         try {
-            String url = "jdbc:postgresql://localhost:5432/postgres";
+            String url = "jdbc:postgresql://10.0.4.197:5432/postgres";
             String user = "postgres";
             String password = "1559";
             connection = DriverManager.getConnection(url, user, password);

@@ -13,25 +13,14 @@ import org.apache.poi.xssf.usermodel.*;
 
 class ExcelHandler {
     public void createTable(String title, Map<String, Map<Integer, Double>> map) {
-        // Создайте книгу Excel
         XSSFWorkbook workbook = new XSSFWorkbook();
-
-        // Создайте новый лист в книге Excel
         Sheet sheet = (Sheet) workbook.createSheet();
-
-        // Заголовок таблицы
         String[] headers = {title, "Объем ежегодной загрузки, т", "Год"};
-
-        // Создайте новую строку в листе
         Row headerRow = sheet.createRow(0);
-
-        // Заполните заголовок таблицы
         for (int i = 0; i < headers.length; i++) {
             Cell cell = headerRow.createCell(i);
             cell.setCellValue(headers[i]);
         }
-
-        // Данные таблицы
         if (map != null) {
             int rowIndex = 1;
             for (Map.Entry<String, Map<Integer, Double>> entry : map.entrySet()) {
@@ -48,8 +37,6 @@ class ExcelHandler {
                 }
             }
         }
-
-        // Сохраните книгу Excel в файл
         try (FileOutputStream outputStream = new FileOutputStream("table.xlsx")) {
             workbook.write(outputStream);
         } catch (IOException e) {

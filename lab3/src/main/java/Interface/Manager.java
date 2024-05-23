@@ -20,7 +20,6 @@ public class Manager {
     SQLhandler handler = new SQLhandler();
 
     public void read() {
-        System.out.println("smth " + handler.readDataBase(repository.getList()));
         repository.setDBList(handler.readDataBase(repository.getList()));
         handler.calculateFuelLoad(repository.getDBList());
     }
