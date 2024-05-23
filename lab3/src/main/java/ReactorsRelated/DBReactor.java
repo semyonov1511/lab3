@@ -83,10 +83,6 @@ public class DBReactor {
         return fuelLoad;
     }
 
-    public void setFuelLoad(Map<Integer, Double> fuelLoad) {
-        this.fuelLoad = fuelLoad;
-    }
-
     private void chooseType(String type_name, ArrayList<Reactor> reactors) {
         switch (type_name) {
             case "PWR" ->

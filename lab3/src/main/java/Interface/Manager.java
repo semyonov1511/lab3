@@ -22,7 +22,7 @@ public class Manager {
     public void read() {
         repository.setDBList(handler.readDataBase(repository.getList()));
         handler.calculateFuelLoad(repository.getDBList());
-    }
+    }   
 
     public Manager() {
         FileReader YAMLfilereader = new YAMLFileReader();
