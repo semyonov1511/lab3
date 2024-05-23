@@ -2,12 +2,17 @@ package Interface;
 
 import ReactorsRelated.Reactor;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
 
 public class GUI extends javax.swing.JFrame {
-    
+
     DefaultTreeModel model;
     Manager manager = new Manager();
 
@@ -117,7 +122,7 @@ public class GUI extends javax.swing.JFrame {
             manager.setList(new File(chooser.getSelectedFile().getAbsolutePath()));
             for (Reactor reactor : manager.getList()) {
                 DefaultMutableTreeNode concreteReactor = new DefaultMutableTreeNode(reactor.getType());
-                for (String parameter : reactor.getParameters()){
+                for (String parameter : reactor.getParameters()) {
                     concreteReactor.add(new DefaultMutableTreeNode(parameter));
                 }
                 reactors.add(concreteReactor);
@@ -129,7 +134,6 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_openFileActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        manager.connect();
         manager.read();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -140,6 +144,7 @@ public class GUI extends javax.swing.JFrame {
         });
     }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree ReactorsTree;
     private javax.swing.JRadioButton countryButton;

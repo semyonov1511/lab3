@@ -12,13 +12,13 @@ import java.util.Map;
 
 public class SQLhandler {
 
-    public ArrayList<Reactor> readDataBase(ArrayList<Reactor> reactorTypes) {
+    public ArrayList<DBReactor> readDataBase(ArrayList<Reactor> reactorTypes) {
         SQLconnector connector = new SQLconnector();
         connector.setConnection();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        ArrayList<Reactor> reactors = new ArrayList<>();
+        ArrayList<DBReactor> reactors = new ArrayList<>();
         try {
             connection = connector.getConnection();
             preparedStatement = connection.prepareStatement("""
@@ -78,5 +78,17 @@ public class SQLhandler {
         reactor.setThermalCapacity(resultSet.getInt("thermal_capacity"));
         reactor.setReactor(resultSet.getString("type_name"), reactorTypes);
         reactor.setLoadFactor(readLoadFactor(connection, resultSet.getInt("id")));
+    }
+    
+    public void calculateFuelLoad(ArrayList<DBReactor> reactors) {
+        double fuelLoad;
+        for (DBReactor reactor : reactors) {
+            for (int year = 2014; year < 2025; year++) {
+                fuelLoad = reactor.getLoadFactor().containsKey(year)
+                        ? reactor.getThermalCapacity() * reactor.getLoadFactor().get(year) / 100 / reactor.getReactor().getBurnup()
+                        : 0;
+                reactor.getFuelLoad().put(year, fuelLoad);
+            }
+        }
     }
 }
