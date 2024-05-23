@@ -1,5 +1,7 @@
 package Interface;
 
+import DBrealated.SQLconnector;
+import DBrealated.SQLreader;
 import FileReaders.FileReader;
 import FileReaders.JSONFileReader;
 import FileReaders.XMLFileReader;
@@ -13,7 +15,17 @@ public class Manager {
 
     Repository repository = new Repository();
     FileReader XMLfilereader = new XMLFileReader();
-    
+    SQLconnector connector = new SQLconnector();
+    SQLreader reader = new SQLreader();
+
+    public void connect() {
+        connector.setConnection();
+    }
+
+    public void read() {
+        reader.readDataBase(repository.getList());
+    }
+
     public Manager() {
         FileReader YAMLfilereader = new YAMLFileReader();
         FileReader JSONfilereader = new JSONFileReader();
@@ -23,7 +35,7 @@ public class Manager {
 
     public void setList(File file) {
         repository.setList(XMLfilereader.read(file));
-        for (Reactor reactor : repository.getList()){
+        for (Reactor reactor : repository.getList()) {
             reactor.setParameters();
         }
     }
@@ -31,5 +43,5 @@ public class Manager {
     public ArrayList<Reactor> getList() {
         return repository.getList();
     }
-    
+
 }

@@ -24,8 +24,11 @@ public class DBReactor {
         this.name = name;
     }
 
-    public void setType(String type_name, ArrayList<Reactor> reactorTypes) {
+    public void setReactor(String type_name, ArrayList<Reactor> reactorTypes) {
         chooseType(type_name, reactorTypes);
+    }
+    public Reactor getReactor(){
+        return this.reactor;
     }
 
     public String getCountry() {
