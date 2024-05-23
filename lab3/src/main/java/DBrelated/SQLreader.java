@@ -1,4 +1,4 @@
-package DBrealated;
+package DBrelated;
 
 import ReactorsRelated.DBReactor;
 import ReactorsRelated.Reactor;

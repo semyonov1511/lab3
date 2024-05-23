@@ -1,4 +1,4 @@
-package DBrealated;
+package DBrelated;
 
 public class DBManager {
     /*SQLconnector connector = new SQLconnector();

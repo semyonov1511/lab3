@@ -1,11 +1,12 @@
 package Interface;
 
-import DBrealated.SQLconnector;
-import DBrealated.SQLreader;
+import DBrelated.SQLconnector;
+import DBrelated.SQLreader;
 import FileReaders.FileReader;
 import FileReaders.JSONFileReader;
 import FileReaders.XMLFileReader;
 import FileReaders.YAMLFileReader;
+import ReactorsRelated.DBReactor;
 import ReactorsRelated.Reactor;
 import ReactorsRelated.Repository;
 import java.io.File;
@@ -44,4 +45,15 @@ public class Manager {
         return repository.getList();
     }
 
+    public void calculateFuelLoad(ArrayList<DBReactor> reactors) {
+        double fuelLoad;
+        for (DBReactor reactor : reactors) {
+            for (int year = 2014; year < 2025; year++) {
+                fuelLoad = reactor.getLoadFactor().containsKey(year)
+                        ? reactor.getThermalCapacity() * reactor.getLoadFactor().get(year) / 100 / reactor.getReactor().getBurnup()
+                        : 0;
+                reactor.getFuelLoad().put(year, fuelLoad);
+            }
+        }
+    }
 }
