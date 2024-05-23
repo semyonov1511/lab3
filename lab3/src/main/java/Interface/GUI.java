@@ -10,7 +10,6 @@ public class GUI extends javax.swing.JFrame {
 
     DefaultTreeModel model;
     Manager manager = new Manager();
-    
 
     public GUI() {
         initComponents();
@@ -139,7 +138,15 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_readButtonActionPerformed
 
     private void exportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportButtonActionPerformed
-        manager.export(1);
+        if (operatorButton.isSelected()) {
+            manager.export(1);
+        }
+        if (countryButton.isSelected()) {
+            manager.export(2);
+        }
+        if (regionButton.isSelected()) {
+            manager.export(3);
+        }
     }//GEN-LAST:event_exportButtonActionPerformed
 
     public static void main(String args[]) {
@@ -149,7 +156,7 @@ public class GUI extends javax.swing.JFrame {
         });
     }
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree ReactorsTree;
     private javax.swing.JRadioButton countryButton;

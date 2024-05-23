@@ -104,7 +104,7 @@ public class DBReactor {
             case "RBMK" ->
                 findType(reactors, "RBMK");
             case "VVER" ->
-                findType(reactors, "VVER-1200");
+                findType(reactors, "VVER_1200");
         }
     }
 

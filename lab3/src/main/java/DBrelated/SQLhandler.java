@@ -33,7 +33,7 @@ public class SQLhandler {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 DBReactor reactor = new DBReactor();
-                setParameters(reactor,resultSet,reactorTypes,connection);
+                setParameters(reactor, resultSet, reactorTypes, connection);
                 reactors.add(reactor);
             }
             System.out.println("База данных прочитана");
@@ -71,7 +71,7 @@ public class SQLhandler {
         return loadFactor;
     }
 
-    private void setParameters(DBReactor reactor, ResultSet resultSet,ArrayList<Reactor> reactorTypes,Connection connection) throws SQLException {
+    private void setParameters(DBReactor reactor, ResultSet resultSet, ArrayList<Reactor> reactorTypes, Connection connection) throws SQLException {
         reactor.setName(resultSet.getString("reactor_name"));
         reactor.setCountry(resultSet.getString("country_name"));
         reactor.setRegion(resultSet.getString("region_name"));
@@ -81,11 +81,10 @@ public class SQLhandler {
         reactor.setReactor(resultSet.getString("type_name"), reactorTypes);
         reactor.setLoadFactor(readLoadFactor(connection, resultSet.getInt("id")));
     }
-    
+
     public void calculateFuelLoad(ArrayList<DBReactor> reactors) {
         double fuelLoad;
         for (DBReactor reactor : reactors) {
-            System.out.println("br " +reactor.getReactor().getType());
             for (int year = 2014; year < 2025; year++) {
                 fuelLoad = reactor.getLoadFactor().containsKey(year)
                         ? reactor.getThermalCapacity() * reactor.getLoadFactor().get(year) / 100 / reactor.getReactor().getBurnup()
@@ -94,23 +93,22 @@ public class SQLhandler {
             }
         }
     }
-    public Map<String, Map<Integer, Double>> link(ArrayList<DBReactor> reactors) {
+
+    public Map<String, Map<Integer, Double>> list(ArrayList<DBReactor> reactors, Function<DBReactor, String> getter) {
         Map<String, Map<Integer, Double>> map = new HashMap<>();
-        System.out.println(reactors);
         for (DBReactor reactor : reactors) {
-            System.out.println(reactor.getOperator());
-            if (map.containsKey(reactor.getOperator())) {
-                Map<Integer, Double> fuelLoad = map.get(reactor.getOperator());
+            String key = getter.apply(reactor);
+            if (map.containsKey(key)) {
+                Map<Integer, Double> fuelLoad = map.get(key);
                 for (int year = 2014; year < 2025; year++) {
                     fuelLoad.put(year, reactor.getFuelLoad().get(year) + fuelLoad.get(year));
                 }
             } else {
-                map.put(reactor.getOperator(), new HashMap<>());
-                Map<Integer, Double> fuelLoad = map.get(reactor.getOperator());
+                map.put(key, new HashMap<>());
+                Map<Integer, Double> fuelLoad = map.get(key);
                 fuelLoad.putAll(reactor.getFuelLoad());
             }
         }
-        System.out.println("map " +map);
         return map;
     }
 }

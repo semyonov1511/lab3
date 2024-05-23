@@ -49,8 +49,9 @@ public class Manager {
 
     public void export(int i) {
         switch (i) {
-            case 1 ->
-                ehandler.createTable("Регион", handler.link(repository.getDBList()));
+            case 1 -> ehandler.createTable("Оператор", handler.list(repository.getDBList(), DBReactor::getOperator));
+            case 2 -> ehandler.createTable("Страна", handler.list(repository.getDBList(), DBReactor::getCountry));
+            case 3 -> ehandler.createTable("Регион", handler.list(repository.getDBList(), DBReactor::getRegion));
         }
     }
 
