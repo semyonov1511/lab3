@@ -28,14 +28,6 @@ public class SQLconnector {
             }
         } catch (SQLException e) {
             System.out.println("Ошибка подключения к базе данных: " + e.getMessage());
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Ошибка при закрытии соединения: " + e.getMessage());
-            }
         }
         return connection;
     }

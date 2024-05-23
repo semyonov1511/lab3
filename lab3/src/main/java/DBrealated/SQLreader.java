@@ -18,7 +18,6 @@ public class SQLreader {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        connector.setConnection();
         ArrayList<Reactor> reactors = new ArrayList<>();
         try {
             connection = connector.getConnection();
@@ -33,20 +32,12 @@ public class SQLreader {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 DBReactor reactor = new DBReactor();
-                reactor.setName(resultSet.getString("reactor_name"));
-                reactor.setCountry(resultSet.getString("country_name"));
-                reactor.setRegion(resultSet.getString("region_name"));
-                reactor.setOwner(resultSet.getString("owner_name"));
-                reactor.setOperator(resultSet.getString("operator_name"));
-                reactor.setThermalCapacity(resultSet.getInt("thermal_capacity"));
-                reactor.setReactor(resultSet.getString("type_name"), reactorTypes);
-                reactor.setLoadFactor(readLoadFactor(connection, resultSet.getInt("id")));
-                System.out.println(resultSet.getInt("id") + ". " + reactor.getName() + ": " + reactor.getReactor().getBurnup());
+                setParameters(reactor,resultSet,reactorTypes,connection);
             }
-            System.out.println("БД успешно прочитана");
+            System.out.println("База данных прочитана");
         } catch (SQLException e) {
-            System.out.println("Oшибка при чтении из БД " + e.getMessage());
-        }finally {
+            System.out.println("Oшибка при чтении: " + e.getMessage());
+        } finally {
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -58,7 +49,6 @@ public class SQLreader {
                     resultSet.close();
                 }
             } catch (SQLException e) {
-                System.out.println("Oшибка при закрытии " + e.getMessage());
             }
         }
         return reactors;
@@ -66,18 +56,27 @@ public class SQLreader {
 
     private Map<Integer, Double> readLoadFactor(Connection connection, int reactor_id) {
         Map<Integer, Double> loadFactor = new HashMap<>();
-        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT load_factor, year FROM load_factor WHERE reactor_id = ?")) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT load_factor, year FROM loadfactor WHERE reactor_id = ?")) {
             preparedStatement.setInt(1, reactor_id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     loadFactor.put(resultSet.getInt("year"), resultSet.getDouble("load_factor"));
                 }
-                System.out.println("База данных успешно прочитана");
             }
         } catch (SQLException e) {
-            System.out.println("Ошибка при чтении базы данных: " + e.getMessage());
         }
 
         return loadFactor;
+    }
+
+    private void setParameters(DBReactor reactor, ResultSet resultSet,ArrayList<Reactor> reactorTypes,Connection connection) throws SQLException {
+        reactor.setName(resultSet.getString("reactor_name"));
+        reactor.setCountry(resultSet.getString("country_name"));
+        reactor.setRegion(resultSet.getString("region_name"));
+        reactor.setOwner(resultSet.getString("owner_name"));
+        reactor.setOperator(resultSet.getString("operator_name"));
+        reactor.setThermalCapacity(resultSet.getInt("thermal_capacity"));
+        reactor.setReactor(resultSet.getString("type_name"), reactorTypes);
+        reactor.setLoadFactor(readLoadFactor(connection, resultSet.getInt("id")));
     }
 }
