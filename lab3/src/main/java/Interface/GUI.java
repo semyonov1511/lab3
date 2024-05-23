@@ -2,19 +2,15 @@ package Interface;
 
 import ReactorsRelated.Reactor;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.ss.usermodel.*;
 
 public class GUI extends javax.swing.JFrame {
 
     DefaultTreeModel model;
     Manager manager = new Manager();
+    
 
     public GUI() {
         initComponents();
@@ -32,11 +28,11 @@ public class GUI extends javax.swing.JFrame {
         openFile = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ReactorsTree = new javax.swing.JTree();
-        jButton1 = new javax.swing.JButton();
+        readButton = new javax.swing.JButton();
         countryButton = new javax.swing.JRadioButton();
         regionButton = new javax.swing.JRadioButton();
         operatorButton = new javax.swing.JRadioButton();
-        jButton2 = new javax.swing.JButton();
+        exportButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,10 +48,10 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(ReactorsTree);
         ReactorsTree.getAccessibleContext().setAccessibleParent(ReactorsTree);
 
-        jButton1.setText("Read and calcualte");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        readButton.setText("Read and calcualte");
+        readButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                readButtonActionPerformed(evt);
             }
         });
 
@@ -67,7 +63,12 @@ public class GUI extends javax.swing.JFrame {
         operatorButton.setText("by Operator");
         operatorButton.setToolTipText("");
 
-        jButton2.setText("Export");
+        exportButton.setText("Export");
+        exportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,11 +80,11 @@ public class GUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(openFile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(readButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(countryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(regionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(operatorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(exportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -94,9 +95,9 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(openFile, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(readButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(exportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)
                         .addComponent(countryButton)
                         .addGap(4, 4, 4)
@@ -133,9 +134,13 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_openFileActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void readButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readButtonActionPerformed
         manager.read();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_readButtonActionPerformed
+
+    private void exportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportButtonActionPerformed
+        manager.export(1);
+    }//GEN-LAST:event_exportButtonActionPerformed
 
     public static void main(String args[]) {
 
@@ -148,12 +153,12 @@ public class GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree ReactorsTree;
     private javax.swing.JRadioButton countryButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton exportButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.ButtonGroup linkGroup;
     private javax.swing.JButton openFile;
     private javax.swing.JRadioButton operatorButton;
+    private javax.swing.JButton readButton;
     private javax.swing.JRadioButton regionButton;
     // End of variables declaration//GEN-END:variables
 }

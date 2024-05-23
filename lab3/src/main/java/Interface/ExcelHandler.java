@@ -7,17 +7,12 @@ package Interface;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.*;
 
-/**
- *
- * @author рс
- */
+
 class ExcelHandler {
-    private void createTable(String title, Map<String, Map<Integer, Double>> map) {
+    public void createTable(String title, Map<String, Map<Integer, Double>> map) {
         // Создайте книгу Excel
         XSSFWorkbook workbook = new XSSFWorkbook();
 

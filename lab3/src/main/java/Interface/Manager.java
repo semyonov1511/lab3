@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class Manager {
 
+    ExcelHandler ehandler = new ExcelHandler();
     Repository repository = new Repository();
     FileReader XMLfilereader = new XMLFileReader();
     SQLhandler handler = new SQLhandler();
@@ -40,9 +41,16 @@ public class Manager {
     public ArrayList<Reactor> getList() {
         return repository.getList();
     }
-    
+
     public void calculate(ArrayList<DBReactor> reactors) {
         handler.calculateFuelLoad(repository.getDBList());
     }
-    
+
+    public void export(int i) {
+        switch (i) {
+            case 1 ->
+                ehandler.createTable("Регион", handler.link(repository.getDBList(), DBReactor::getOperator));
+        }
+    }
+
 }
