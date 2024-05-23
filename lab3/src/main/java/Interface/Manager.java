@@ -20,6 +20,7 @@ public class Manager {
     SQLhandler handler = new SQLhandler();
 
     public void read() {
+        System.out.println("smth " + handler.readDataBase(repository.getList()));
         repository.setDBList(handler.readDataBase(repository.getList()));
         handler.calculateFuelLoad(repository.getDBList());
     }
@@ -49,7 +50,7 @@ public class Manager {
     public void export(int i) {
         switch (i) {
             case 1 ->
-                ehandler.createTable("Регион", handler.link(repository.getDBList(), DBReactor::getOperator));
+                ehandler.createTable("Регион", handler.link(repository.getDBList()));
         }
     }
 

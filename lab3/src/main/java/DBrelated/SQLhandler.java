@@ -34,6 +34,7 @@ public class SQLhandler {
             while (resultSet.next()) {
                 DBReactor reactor = new DBReactor();
                 setParameters(reactor,resultSet,reactorTypes,connection);
+                reactors.add(reactor);
             }
             System.out.println("База данных прочитана");
         } catch (SQLException e) {
@@ -84,6 +85,7 @@ public class SQLhandler {
     public void calculateFuelLoad(ArrayList<DBReactor> reactors) {
         double fuelLoad;
         for (DBReactor reactor : reactors) {
+            System.out.println("br " +reactor.getReactor().getType());
             for (int year = 2014; year < 2025; year++) {
                 fuelLoad = reactor.getLoadFactor().containsKey(year)
                         ? reactor.getThermalCapacity() * reactor.getLoadFactor().get(year) / 100 / reactor.getReactor().getBurnup()
@@ -92,21 +94,23 @@ public class SQLhandler {
             }
         }
     }
-    public <T> Map<String, Map<Integer, Double>> link(ArrayList<DBReactor> reactors, Function<DBReactor, T> getter) {
+    public Map<String, Map<Integer, Double>> link(ArrayList<DBReactor> reactors) {
         Map<String, Map<Integer, Double>> map = new HashMap<>();
+        System.out.println(reactors);
         for (DBReactor reactor : reactors) {
-            T key = getter.apply(reactor);
-            if (map.containsKey(key.toString())) {
-                Map<Integer, Double> fuelLoad = map.get(key.toString());
-                for (int year = 2014; year <= 2024; year++) {
+            System.out.println(reactor.getOperator());
+            if (map.containsKey(reactor.getOperator())) {
+                Map<Integer, Double> fuelLoad = map.get(reactor.getOperator());
+                for (int year = 2014; year < 2025; year++) {
                     fuelLoad.put(year, reactor.getFuelLoad().get(year) + fuelLoad.get(year));
                 }
             } else {
-                map.put(key.toString(), new HashMap<>());
-                Map<Integer, Double> load = map.get(key.toString());
-                load.putAll(reactor.getFuelLoad());
+                map.put(reactor.getOperator(), new HashMap<>());
+                Map<Integer, Double> fuelLoad = map.get(reactor.getOperator());
+                fuelLoad.putAll(reactor.getFuelLoad());
             }
         }
+        System.out.println("map " +map);
         return map;
     }
 }
