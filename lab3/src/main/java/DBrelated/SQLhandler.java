@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.IntStream;
 
 public class SQLhandler {
 
@@ -23,7 +24,7 @@ public class SQLhandler {
         try {
             connection = connector.getConnection();
             preparedStatement = connection.prepareStatement("""
-                    SELECT reactor.id, reactor_name, thermal_capacity, country_name, region_name, type_name, operator_name, owner_name
+                    SELECT reactor.id, reactor_name, thermal_capacity, country_name, region_name, type_name, operator_name, owner_name, shutdown_date
                     FROM reactor
                     LEFT JOIN country ON country_id = country.id
                     LEFT JOIN region ON region_id = region.id
@@ -52,7 +53,7 @@ public class SQLhandler {
                 }
             } catch (SQLException e) {
             }
-        }
+        }   
         return reactors;
     }
 
@@ -79,22 +80,26 @@ public class SQLhandler {
         reactor.setOperator(resultSet.getString("operator_name"));
         reactor.setThermalCapacity(resultSet.getInt("thermal_capacity"));
         reactor.setReactor(resultSet.getString("type_name"), reactorTypes);
+        reactor.setShutdownYear(findYear(resultSet.getString("shutdown_date")));
         reactor.setLoadFactor(readLoadFactor(connection, resultSet.getInt("id")));
     }
 
     public void calculateFuelLoad(ArrayList<DBReactor> reactors) {
-        double fuelLoad;
-        for (DBReactor reactor : reactors) {
-            for (int year = 2014; year < 2025; year++) {
-                fuelLoad = reactor.getLoadFactor().containsKey(year)
-                        ? reactor.getThermalCapacity() * reactor.getLoadFactor().get(year) / 100 / reactor.getReactor().getBurnup()
-                        : 0;
-                reactor.getFuelLoad().put(year, fuelLoad);
-            }
-        }
+        reactors.forEach(reactor -> {
+            IntStream.range(2014, 2025)
+                    .forEach(year -> {
+                        double fuelLoad = 0;
+                        if (reactor.getLoadFactor().containsKey(year)) {
+                            fuelLoad = reactor.getThermalCapacity() * reactor.getLoadFactor().get(year) / 100 / reactor.getReactor().getBurnup();
+                        } else if (reactor.getShutdownYear() >= year) {
+                            fuelLoad = reactor.getThermalCapacity() * 85 / 100 / reactor.getReactor().getBurnup();
+                        }
+                        reactor.getFuelLoad().put(year, fuelLoad);
+                    });
+        });
     }
 
-    public Map<String, Map<Integer, Double>> list(ArrayList<DBReactor> reactors, Function<DBReactor, String> getter) {
+    public Map<String, Map<Integer, Double>> link(ArrayList<DBReactor> reactors, Function<DBReactor, String> getter) {
         Map<String, Map<Integer, Double>> map = new HashMap<>();
         for (DBReactor reactor : reactors) {
             String key = getter.apply(reactor);
@@ -110,5 +115,14 @@ public class SQLhandler {
             }
         }
         return map;
+    }
+
+    private int findYear(String date) {
+        if (date != null) {
+            int year = Integer.parseInt(date.substring(0, 4));
+            return year;
+        } else {
+            return 2025;
+        }
     }
 }

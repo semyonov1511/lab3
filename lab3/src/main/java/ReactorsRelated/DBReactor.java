@@ -1,4 +1,3 @@
-
 package ReactorsRelated;
 
 import java.util.ArrayList;
@@ -6,11 +5,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DBReactor {
+
     private String name;
     private Reactor reactor;
     private String country;
     private String operator;
     private String owner;
+    private int shutdownYear;
     private int thermalCapacity;
     private String region;
     private Map<Integer, Double> loadFactor;
@@ -27,7 +28,8 @@ public class DBReactor {
     public void setReactor(String type_name, ArrayList<Reactor> reactorTypes) {
         chooseType(type_name, reactorTypes);
     }
-    public Reactor getReactor(){
+
+    public Reactor getReactor() {
         return this.reactor;
     }
 
@@ -53,6 +55,14 @@ public class DBReactor {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public int getShutdownYear() {
+        return shutdownYear;
+    }
+
+    public void setShutdownYear(int shutdownYear) {
+        this.shutdownYear = shutdownYear;
     }
 
     public int getThermalCapacity() {
