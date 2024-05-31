@@ -20,9 +20,13 @@ public class Manager {
     SQLhandler handler = new SQLhandler();
 
     public void read() {
-        repository.setDBList(handler.readDataBase(repository.getList()));
-        handler.calculateFuelLoad(repository.getDBList());
-    }   
+        if (!repository.getList().isEmpty()) {
+            repository.setDBList(handler.readDataBase(repository.getList()));
+            handler.calculateFuelLoad(repository.getDBList());
+        } else {
+            System.out.println("Сначала импортируйте информацию о реакторах");
+        }
+    }
 
     public Manager() {
         FileReader YAMLfilereader = new YAMLFileReader();
@@ -47,10 +51,18 @@ public class Manager {
     }
 
     public void export(int i) {
-        switch (i) {
-            case 1 -> ehandler.createTable("Оператор", handler.link(repository.getDBList(), DBReactor::getOperator));
-            case 2 -> ehandler.createTable("Страна", handler.link(repository.getDBList(), DBReactor::getCountry));
-            case 3 -> ehandler.createTable("Регион", handler.link(repository.getDBList(), DBReactor::getRegion));
+        if (!repository.getDBList().isEmpty()) {
+            switch (i) {
+                case 1 ->
+                    ehandler.createTable("Оператор", handler.link(repository.getDBList(), DBReactor::getOperator));
+                case 2 ->
+                    ehandler.createTable("Страна", handler.link(repository.getDBList(), DBReactor::getCountry));
+                case 3 ->
+                    ehandler.createTable("Регион", handler.link(repository.getDBList(), DBReactor::getRegion));
+            }
+        }
+        else{
+            System.out.println("Сначала импортируйте информацию о загрузке");
         }
     }
 
