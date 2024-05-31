@@ -24,7 +24,8 @@ public class SQLhandler {
         try {
             connection = connector.getConnection();
             preparedStatement = connection.prepareStatement("""
-                    SELECT reactor.id, reactor_name, thermal_capacity, country_name, region_name, type_name, operator_name, owner_name, shutdown_date
+                    SELECT reactor.id, reactor_name, thermal_capacity, country_name, region_name, type_name,
+                                                            operator_name, owner_name, shutdown_date, connection_date
                     FROM reactor
                     LEFT JOIN country ON country_id = country.id
                     LEFT JOIN region ON region_id = region.id
@@ -81,6 +82,7 @@ public class SQLhandler {
         reactor.setThermalCapacity(resultSet.getInt("thermal_capacity"));
         reactor.setReactor(resultSet.getString("type_name"), reactorTypes);
         reactor.setShutdownYear(findYear(resultSet.getString("shutdown_date")));
+        reactor.setConnectionYear(findYear(resultSet.getString("connection_date")));
         reactor.setLoadFactor(readLoadFactor(connection, resultSet.getInt("id")));
     }
 
@@ -91,7 +93,7 @@ public class SQLhandler {
                         double fuelLoad = 0;
                         if (reactor.getLoadFactor().containsKey(year)) {
                             fuelLoad = reactor.getThermalCapacity() * reactor.getLoadFactor().get(year) / 100 / reactor.getReactor().getBurnup();
-                        } else if (reactor.getShutdownYear() >= year) {
+                        } else if (reactor.getShutdownYear() >= year & reactor.getConnectionYear() <= year) {
                             fuelLoad = reactor.getThermalCapacity() * 85 / 100 / reactor.getReactor().getBurnup();
                         }
                         reactor.getFuelLoad().put(year, fuelLoad);

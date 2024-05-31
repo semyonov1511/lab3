@@ -11,6 +11,7 @@ public class DBReactor {
     private String country;
     private String operator;
     private String owner;
+    private int connectionYear;
     private int shutdownYear;
     private int thermalCapacity;
     private String region;
@@ -75,6 +76,13 @@ public class DBReactor {
 
     public String getRegion() {
         return region;
+    }
+    public int getConnectionYear() {
+        return connectionYear;
+    }
+
+    public void setConnectionYear(int connectionYear) {
+        this.connectionYear = connectionYear;
     }
 
     public void setRegion(String region) {
